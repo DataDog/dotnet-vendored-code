@@ -5,13 +5,13 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Reflection.Metadata", "Datadog.System.Reflection.Metadata\Datadog.System.Reflection.Metadata.csproj", "{A8CE7045-0BFE-4123-ADA1-B29DB1F54448}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Collections.immutable", "Datadog.System.Collections.immutable\Datadog.System.Collections.immutable.csproj", "{9EFDEB3F-2D95-43FA-8F7C-268890107F78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Collections.Immutable", "Datadog.System.Collections.Immutable\Datadog.System.Collections.Immutable.csproj", "{9EFDEB3F-2D95-43FA-8F7C-268890107F78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Memory", "Datadog.System.Memory\Datadog.System.Memory.csproj", "{22F905B5-CFF5-42EA-8C5B-AF7AD2EFF4F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Private.CoreLib", "Datadog.System.Private.CoreLib\Datadog.System.Private.CoreLib.csproj", "{E993C6B9-01E1-473C-9E06-1D58F396CEA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Runtime.CompilerService.Unsafe", "Datadog.System.Runtime.CompilerService.Unsafe\Datadog.System.Runtime.CompilerService.Unsafe.csproj", "{5BC4D2E7-81F0-43DC-B52E-65031A4B9850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datadog.System.Runtime.CompilerServices.Unsafe", "Datadog.System.Runtime.CompilerServices.Unsafe\Datadog.System.Runtime.CompilerServices.Unsafe.csproj", "{5BC4D2E7-81F0-43DC-B52E-65031A4B9850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
