@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Datadog.System.Collections.immutable\Datadog.System.Collections.immutable.csproj" />
+    <ProjectReference Include="..\Datadog.System.Collections.immutable\Datadog.System.Collections.Immutable.csproj" />
     <ProjectReference Include="..\Datadog.System.Memory\Datadog.System.Memory.csproj" />
     <ProjectReference Include="..\Datadog.System.Private.CoreLib\Datadog.System.Private.CoreLib.csproj" />
   </ItemGroup>
