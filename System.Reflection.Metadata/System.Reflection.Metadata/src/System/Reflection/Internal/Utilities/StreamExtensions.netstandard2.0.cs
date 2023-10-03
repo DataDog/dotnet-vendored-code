@@ -7,7 +7,7 @@
 
 using System;
 using System.IO;
-using System.Refelaction.Metadata.src.System.Reflection.Internal.Utilities;
+using System.Reflection.Internal.Utilities;
 using System.Runtime.InteropServices;
 
 

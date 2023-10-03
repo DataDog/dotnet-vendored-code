@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices;
 
-namespace System.Refelaction.Metadata.src.System.Reflection.Internal.Utilities
+namespace System.Reflection.Internal.Utilities
 {
     #nullable enable
 public static class Interop
