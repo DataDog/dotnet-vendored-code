@@ -135,8 +135,8 @@ label_8:
     public static bool SequenceEqual<T>(this Span<T> span, ReadOnlySpan<T> other) where T : IEquatable<T>
     {
       int length = span.Length;
-      NUInt size;
-      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length == other.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(other)), (int)(object)((NUInt) length * size)) : length == other.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(other), length);
+      nuint size;
+      return default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length == other.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(other)), (int)((nuint) length * size)) : length == other.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(other), length);
     }
 
     public static int SequenceCompareTo<T>(this Span<T> span, ReadOnlySpan<T> other) where T : IComparable<T>
@@ -208,8 +208,8 @@ label_8:
     public static bool SequenceEqual<T>(this ReadOnlySpan<T> span, ReadOnlySpan<T> other) where T : IEquatable<T>
     {
       int length = span.Length;
-      NUInt size;
-      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length == other.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(other)), (int)(object)((NUInt) length * size)) : length == other.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(other), length);
+      nuint size;
+      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length == other.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(other)), (int)((nuint) length * size)) : length == other.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(other), length);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
@@ -224,16 +224,16 @@ label_8:
     public static bool StartsWith<T>(this Span<T> span, ReadOnlySpan<T> value) where T : IEquatable<T>
     {
       int length = value.Length;
-      NUInt size;
-      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length <= span.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)(object)((NUInt) length * size)) : length <= span.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(value), length);
+      nuint size;
+      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length <= span.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)((nuint) length * size)) : length <= span.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(value), length);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
     public static bool StartsWith<T>(this ReadOnlySpan<T> span, ReadOnlySpan<T> value) where T : IEquatable<T>
     {
       int length = value.Length;
-      NUInt size;
-      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length <= span.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)(object)((NUInt) length * size)) : length <= span.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(value), length);
+      nuint size;
+      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length <= span.Length && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(span)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)((nuint) length * size)) : length <= span.Length && SpanHelpers.SequenceEqual<T>(ref MemoryMarshal.GetReference<T>(span), ref MemoryMarshal.GetReference<T>(value), length);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
@@ -241,8 +241,8 @@ label_8:
     {
       int length1 = span.Length;
       int length2 = value.Length;
-      NUInt size;
-      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length2 <= length1 && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)(object)((NUInt) length2 * size)) : length2 <= length1 && SpanHelpers.SequenceEqual<T>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2), ref MemoryMarshal.GetReference<T>(value), length2);
+      nuint size;
+      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length2 <= length1 && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)((nuint) length2 * size)) : length2 <= length1 && SpanHelpers.SequenceEqual<T>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2), ref MemoryMarshal.GetReference<T>(value), length2);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
@@ -250,8 +250,8 @@ label_8:
     {
       int length1 = span.Length;
       int length2 = value.Length;
-      NUInt size;
-      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length2 <= length1 && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)(object)((NUInt) length2 * size)) : length2 <= length1 && SpanHelpers.SequenceEqual<T>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2), ref MemoryMarshal.GetReference<T>(value), length2);
+      nuint size;
+      return (object) default (T) != null && MemoryExtensions.IsTypeComparableAsBytes<T>(out size) ? length2 <= length1 && SpanHelpers.SequenceEqual(ref Unsafe.As<T, byte>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2)), ref Unsafe.As<T, byte>(ref MemoryMarshal.GetReference<T>(value)), (int)((nuint) length2 * size)) : length2 <= length1 && SpanHelpers.SequenceEqual<T>(ref Unsafe.Add<T>(ref MemoryMarshal.GetReference<T>(span), length1 - length2), ref MemoryMarshal.GetReference<T>(value), length2);
     }
 
     public static void Reverse<T>(this Span<T> span)
@@ -407,29 +407,29 @@ label_8:
     }
 
     [MethodImpl((MethodImplOptions) 256)]
-    private static bool IsTypeComparableAsBytes<T>(out NUInt size)
+    private static bool IsTypeComparableAsBytes<T>(out nuint size)
     {
       if (typeof (T) == typeof (byte) || typeof (T) == typeof (sbyte))
       {
-        size = (NUInt) 1;
+        size = (nuint) 1;
         return true;
       }
       if (typeof (T) == typeof (char) || typeof (T) == typeof (short) || typeof (T) == typeof (ushort))
       {
-        size = (NUInt) 2;
+        size = (nuint) 2;
         return true;
       }
       if (typeof (T) == typeof (int) || typeof (T) == typeof (uint))
       {
-        size = (NUInt) 4;
+        size = (nuint) 4;
         return true;
       }
       if (typeof (T) == typeof (long) || typeof (T) == typeof (ulong))
       {
-        size = (NUInt) 8;
+        size = (nuint) 8;
         return true;
       }
-      size = new NUInt();
+      size = new nuint();
       return false;
     }
 
