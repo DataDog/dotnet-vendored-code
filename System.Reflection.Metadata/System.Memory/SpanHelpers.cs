@@ -1,9 +1,7 @@
-﻿// Decompiled with JetBrains decompiler
+﻿
 // Type: System.SpanHelpers
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
-// Assembly location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll
-// XML documentation location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.xml
 
 using System;
 using System.Collections.Generic;
@@ -2002,8 +2000,8 @@ namespace System
             while (zero.LessThanEqual(byteLength - sizeof(SpanHelpers.Reg64)))
             {
                 Unsafe.As<byte, SpanHelpers.Reg64>(ref Unsafe.Add<byte>(ref b, zero)) = new SpanHelpers.Reg64();
-                //todo: fix
-                // *(SpanHelpers.Reg64*)Unsafe.As<byte, SpanHelpers.Reg64>(ref Unsafe.Add<byte>(ref b, zero)) = new SpanHelpers.Reg64();
+                //todo: fix *(SpanHelpers.Reg64*)
+                Unsafe.As<byte, SpanHelpers.Reg64>(ref Unsafe.Add<byte>(ref b, zero)) = new SpanHelpers.Reg64();
                 zero += sizeof(SpanHelpers.Reg64);
             }
             if (zero.LessThanEqual(byteLength - sizeof(SpanHelpers.Reg32)))
@@ -2111,7 +2109,7 @@ namespace System
             private static IntPtr MeasureArrayAdjustment()
             {
                 T[] o = new T[1];
-                return Unsafe.ByteOffset<T>(ref Unsafe.As<Pinnable<T>>((object)o).Data, ref o[0]);
+                return Unsafe.ByteOffset<T>(ref Unsafe.As<Pinnable<T>>(o).Data, ref o[0]);
             }
         }
     }

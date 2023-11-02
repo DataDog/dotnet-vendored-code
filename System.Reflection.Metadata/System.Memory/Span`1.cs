@@ -1,9 +1,7 @@
-﻿// Decompiled with JetBrains decompiler
+﻿
 // Type: System.Span`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
-// Assembly location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll
-// XML documentation location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.xml
 
 using System;
 using System.ComponentModel;
@@ -68,7 +66,7 @@ namespace System
                 if ((object)default(T) == null && array.GetType() != typeof(T[]))
                     ThrowHelper.ThrowArrayTypeMismatchException();
                 this._length = array.Length;
-                this._pinnable = Unsafe.As<System.Pinnable<T>>((object)array);
+                this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
                 this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment;
             }
         }
@@ -88,7 +86,7 @@ namespace System
                 ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
             IntPtr byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
             int length = array.Length - start;
-            return new Span<T>(Unsafe.As<System.Pinnable<T>>((object)array), byteOffset, length);
+            return new Span<T>(Unsafe.As<System.Pinnable<T>>(array), byteOffset, length);
         }
 
         /// <param name="array"></param>
@@ -110,7 +108,7 @@ namespace System
                 if ((uint)start > (uint)array.Length || (uint)length > (uint)(array.Length - start))
                     ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
                 this._length = length;
-                this._pinnable = Unsafe.As<System.Pinnable<T>>((object)array);
+                this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
                 this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
             }
         }

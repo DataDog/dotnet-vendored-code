@@ -1,9 +1,7 @@
-﻿// Decompiled with JetBrains decompiler
+﻿
 // Type: System.Reflection.Internal.ExternalMemoryBlockProvider
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
-// Assembly location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Reflection.Metadata.7.0.2\lib\net462\System.Reflection.Metadata.dll
-// XML documentation location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Reflection.Metadata.7.0.2\lib\net462\System.Reflection.Metadata.xml
 
 using System.IO;
 
@@ -29,11 +27,11 @@ namespace System.Reflection.Internal
 
     public override int Size => this._size;
 
-    protected override unsafe AbstractMemoryBlock GetMemoryBlockImpl(int start, int size) => (AbstractMemoryBlock) new ExternalMemoryBlock((object) this, this._memory + start, size);
+    protected override unsafe AbstractMemoryBlock GetMemoryBlockImpl(int start, int size) => (AbstractMemoryBlock) new ExternalMemoryBlock(this, this._memory + start, size);
 
     public override unsafe Stream GetStream(out StreamConstraints constraints)
     {
-      constraints = new StreamConstraints((object) null, 0L, this._size);
+      constraints = new StreamConstraints(null, 0L, this._size);
       return (Stream) new ReadOnlyUnmanagedMemoryStream(this._memory, this._size);
     }
 

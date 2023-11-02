@@ -1,9 +1,7 @@
-﻿// Decompiled with JetBrains decompiler
+﻿
 // Type: System.MemoryExtensions
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
-// Assembly location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll
-// XML documentation location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.xml
 
 using System;
 using System.Collections.Generic;
@@ -586,7 +584,7 @@ label_8:
     }
 
     [MethodImpl((MethodImplOptions) 256)]
-    public static ReadOnlySpan<char> AsSpan(this string text) => text == null ? new ReadOnlySpan<char>() : new ReadOnlySpan<char>(Unsafe.As<Pinnable<char>>((object) text), MemoryExtensions.StringAdjustment, text.Length);
+    public static ReadOnlySpan<char> AsSpan(this string text) => text == null ? new ReadOnlySpan<char>() : new ReadOnlySpan<char>(Unsafe.As<Pinnable<char>>(text), MemoryExtensions.StringAdjustment, text.Length);
 
     [MethodImpl((MethodImplOptions) 256)]
     public static ReadOnlySpan<char> AsSpan(this string text, int start)
@@ -599,7 +597,7 @@ label_8:
       }
       if ((uint) start > (uint) text.Length)
         ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
-      return new ReadOnlySpan<char>(Unsafe.As<Pinnable<char>>((object) text), MemoryExtensions.StringAdjustment + start * 2, text.Length - start);
+      return new ReadOnlySpan<char>(Unsafe.As<Pinnable<char>>(text), MemoryExtensions.StringAdjustment + start * 2, text.Length - start);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
@@ -613,10 +611,10 @@ label_8:
       }
       if ((uint) start > (uint) text.Length || (uint) length > (uint) (text.Length - start))
         ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
-      return new ReadOnlySpan<char>(Unsafe.As<Pinnable<char>>((object) text), MemoryExtensions.StringAdjustment + start * 2, length);
+      return new ReadOnlySpan<char>(Unsafe.As<Pinnable<char>>(text), MemoryExtensions.StringAdjustment + start * 2, length);
     }
 
-    public static ReadOnlyMemory<char> AsMemory(this string text) => text == null ? new ReadOnlyMemory<char>() : new ReadOnlyMemory<char>((object) text, 0, text.Length);
+    public static ReadOnlyMemory<char> AsMemory(this string text) => text == null ? new ReadOnlyMemory<char>() : new ReadOnlyMemory<char>(text, 0, text.Length);
 
     public static ReadOnlyMemory<char> AsMemory(this string text, int start)
     {
@@ -628,7 +626,7 @@ label_8:
       }
       if ((uint) start > (uint) text.Length)
         ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
-      return new ReadOnlyMemory<char>((object) text, start, text.Length - start);
+      return new ReadOnlyMemory<char>(text, start, text.Length - start);
     }
 
     public static ReadOnlyMemory<char> AsMemory(this string text, int start, int length)
@@ -641,14 +639,14 @@ label_8:
       }
       if ((uint) start > (uint) text.Length || (uint) length > (uint) (text.Length - start))
         ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
-      return new ReadOnlyMemory<char>((object) text, start, length);
+      return new ReadOnlyMemory<char>(text, start, length);
     }
 
     private static unsafe IntPtr MeasureStringAdjustment()
     {
       string o = "a";
       fixed (char* source = o)
-        return Unsafe.ByteOffset<char>(ref Unsafe.As<Pinnable<char>>((object) o).Data, ref Unsafe.AsRef<char>((void*) source));
+        return Unsafe.ByteOffset<char>(ref Unsafe.As<Pinnable<char>>(o).Data, ref Unsafe.AsRef<char>((void*) source));
     }
   }
 }

@@ -1,9 +1,7 @@
-﻿// Decompiled with JetBrains decompiler
+﻿
 // Type: System.ReadOnlySpan`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
-// Assembly location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll
-// XML documentation location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Memory.4.5.5\lib\net461\System.Memory.xml
 
 using System;
 using System.ComponentModel;
@@ -66,7 +64,7 @@ namespace System
       else
       {
         this._length = array.Length;
-        this._pinnable = Unsafe.As<System.Pinnable<T>>((object) array);
+        this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
         this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment;
       }
     }
@@ -88,7 +86,7 @@ namespace System
         if ((uint) start > (uint) array.Length || (uint) length > (uint) (array.Length - start))
           ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
         this._length = length;
-        this._pinnable = Unsafe.As<System.Pinnable<T>>((object) array);
+        this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
         this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
       }
     }
@@ -167,8 +165,8 @@ namespace System
     public override unsafe string ToString()
     {
       if (!(typeof (T) == typeof (char)))
-        return string.Format("System.ReadOnlySpan<{0}>[{1}]", (object) typeof (T).Name, (object) this._length);
-      if (this._byteOffset == MemoryExtensions.StringAdjustment && Unsafe.As<object>((object) this._pinnable) is string str && this._length == str.Length)
+        return string.Format("System.ReadOnlySpan<{0}>[{1}]", typeof (T).Name, this._length);
+      if (this._byteOffset == MemoryExtensions.StringAdjustment && Unsafe.As<object>(this._pinnable) is string str && this._length == str.Length)
         return str;
       fixed (char* chPtr = &Unsafe.As<T, char>(ref this.DangerousGetPinnableReference()))
         return new string(chPtr, 0, this._length);

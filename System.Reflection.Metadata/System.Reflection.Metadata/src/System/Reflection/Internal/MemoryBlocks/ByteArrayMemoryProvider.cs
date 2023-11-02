@@ -1,9 +1,7 @@
-﻿// Decompiled with JetBrains decompiler
+﻿
 // Type: System.Reflection.Internal.ByteArrayMemoryProvider
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
-// Assembly location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Reflection.Metadata.7.0.2\lib\net462\System.Reflection.Metadata.dll
-// XML documentation location: C:\Users\dudi.keleti\source\repos\ConsoleApp4\packages\System.Reflection.Metadata.7.0.2\lib\net462\System.Reflection.Metadata.xml
 
 using System.IO;
 using System.Threading;
@@ -34,7 +32,7 @@ namespace System.Reflection.Internal
 
     public override Stream GetStream(out StreamConstraints constraints)
     {
-      constraints = new StreamConstraints((object) null, 0L, this.Size);
+      constraints = new StreamConstraints(null, 0L, this.Size);
       return (Stream) new ImmutableMemoryStream(this._array);
     }
 
@@ -44,7 +42,7 @@ namespace System.Reflection.Internal
       {
         if (this._pinned == null)
         {
-          PinnedObject pinnedObject = new PinnedObject((object) ImmutableByteArrayInterop.DangerousGetUnderlyingArray(this._array));
+          PinnedObject pinnedObject = new PinnedObject(ImmutableByteArrayInterop.DangerousGetUnderlyingArray(this._array));
           if (Interlocked.CompareExchange<PinnedObject>(ref this._pinned, pinnedObject, (PinnedObject) null) != null)
             pinnedObject.Dispose();
         }
