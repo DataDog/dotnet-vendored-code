@@ -1,16 +1,21 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableDictionary`2
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+#pragma warning disable CS1711
+#pragma warning disable CS8625
 
 
 #nullable enable
@@ -23,7 +28,7 @@ namespace System.Collections.Immutable
     /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
   [DebuggerTypeProxy(typeof (ImmutableDictionaryDebuggerProxy<,>))]
-  public sealed class ImmutableDictionary<TKey, TValue> : 
+  internal sealed class ImmutableDictionary<TKey, TValue> : 
     IImmutableDictionary<TKey, TValue>,
     IReadOnlyDictionary<TKey, TValue>,
     IReadOnlyCollection<KeyValuePair<TKey, TValue>>,
@@ -146,7 +151,7 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Gets the <paramref name="TValue" /> associated with the specified key.</summary>
+    /// <summary>Gets the TValue /> associated with the specified key.</summary>
     /// <param name="key">The type of the key.</param>
     /// <returns>The value associated with the specified key. If no results are found, the operation throws an exception.</returns>
     public TValue this[TKey key]
@@ -696,7 +701,7 @@ namespace System.Collections.Immutable
     /// <typeparam name="TValue" />
     [DebuggerDisplay("Count = {Count}")]
     [DebuggerTypeProxy(typeof (ImmutableDictionaryBuilderDebuggerProxy<,>))]
-    public sealed class Builder : 
+    internal sealed class Builder : 
       IDictionary<TKey, TValue>,
       ICollection<KeyValuePair<TKey, TValue>>,
       IEnumerable<KeyValuePair<TKey, TValue>>,
@@ -1211,7 +1216,7 @@ namespace System.Collections.Immutable
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
     /// <typeparam name="TKey" />
     /// <typeparam name="TValue" />
-    public struct Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IDisposable, IEnumerator
+    internal struct Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>, IDisposable, IEnumerator
     {
 
       #nullable disable

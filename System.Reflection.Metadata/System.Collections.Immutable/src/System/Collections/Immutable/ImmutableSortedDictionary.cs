@@ -1,11 +1,15 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableSortedDictionary
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq;
 
 
@@ -15,7 +19,7 @@ namespace System.Collections.Immutable
     /// <summary>Provides a set of initialization methods for instances of the <see cref="T:System.Collections.Immutable.ImmutableSortedDictionary`2" /> class.
     /// 
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
-    public static class ImmutableSortedDictionary
+    internal static class ImmutableSortedDictionary
   {
     /// <summary>Creates an empty immutable sorted dictionary.</summary>
     /// <typeparam name="TKey">The type of keys stored by the dictionary.</typeparam>

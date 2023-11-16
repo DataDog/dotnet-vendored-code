@@ -1,14 +1,21 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.Text.Utf8Parser
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Runtime.CompilerServices.Unsafe;
+#pragma warning disable CS0168
 
 namespace System.Buffers.Text
 {
-    public static class Utf8Parser
+    internal static class Utf8Parser
   {
     private const uint FlipCase = 32;
     private const uint NoFlipCase = 0;
@@ -1229,7 +1236,7 @@ namespace System.Buffers.Text
       return true;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryParse(
       ReadOnlySpan<byte> source,
       out sbyte value,
@@ -2169,7 +2176,7 @@ label_19:
       }
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryParse(
       ReadOnlySpan<byte> source,
       out ushort value,
@@ -2195,7 +2202,7 @@ label_19:
       }
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryParse(
       ReadOnlySpan<byte> source,
       out uint value,
@@ -2221,7 +2228,7 @@ label_19:
       }
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryParse(
       ReadOnlySpan<byte> source,
       out ulong value,

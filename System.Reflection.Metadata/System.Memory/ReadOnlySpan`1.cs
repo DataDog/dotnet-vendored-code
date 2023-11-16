@@ -1,13 +1,19 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.ReadOnlySpan`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Runtime.CompilerServices.Unsafe;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
 
 namespace System
 {
@@ -37,14 +43,18 @@ namespace System
     /// <returns></returns>
     [Obsolete("Equals() on ReadOnlySpan will always throw an exception. Use == instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public override bool Equals(object obj) => throw new NotSupportedException(SR.NotSupported_CannotCallEqualsOnSpan);
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
+        public override bool Equals(object obj) => throw new NotSupportedException(System.Memory.SR.NotSupported_CannotCallEqualsOnSpan);
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
-    /// <returns></returns>
-    [Obsolete("GetHashCode() on ReadOnlySpan will always throw an exception.")]
+        /// <returns></returns>
+        [Obsolete("GetHashCode() on ReadOnlySpan will always throw an exception.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public override int GetHashCode() => throw new NotSupportedException(SR.NotSupported_CannotCallGetHashCodeOnSpan);
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
+        public override int GetHashCode() => throw new NotSupportedException(System.Memory.SR.NotSupported_CannotCallGetHashCodeOnSpan);
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
-    public static implicit operator ReadOnlySpan<T>(T[] array) => new ReadOnlySpan<T>(array);
+        public static implicit operator ReadOnlySpan<T>(T[] array) => new ReadOnlySpan<T>(array);
 
     public static implicit operator ReadOnlySpan<T>(ArraySegment<T> segment) => new ReadOnlySpan<T>(segment.Array, segment.Offset, segment.Count);
 
@@ -59,12 +69,14 @@ namespace System
     {
       if (array == null)
       {
+          ref var refThis = ref this;
+          refThis = new ReadOnlySpan<T>();
         // todo: fix *(ReadOnlySpan<T>*) ref this = new ReadOnlySpan<T>();
       }
       else
       {
         this._length = array.Length;
-        this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
+        this._pinnable = Unsafe.As<System.Pinnable<T>>((object) array);
         this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment;
       }
     }
@@ -79,6 +91,9 @@ namespace System
       {
         if (start != 0 || length != 0)
           ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
+        
+        ref var refThis = ref this;
+        refThis = new ReadOnlySpan<T>();
         // todo: fix *(ReadOnlySpan<T>*) ref this = new ReadOnlySpan<T>();
       }
       else
@@ -86,14 +101,14 @@ namespace System
         if ((uint) start > (uint) array.Length || (uint) length > (uint) (array.Length - start))
           ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
         this._length = length;
-        this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
+        this._pinnable = Unsafe.As<System.Pinnable<T>>((object) array);
         this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
       }
     }
 
     /// <param name="pointer"></param>
     /// <param name="length"></param>
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public unsafe ReadOnlySpan(void* pointer, int length)
     {
@@ -102,7 +117,9 @@ namespace System
       if (length < 0)
         ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
       this._length = length;
+#pragma warning disable CS8625
       this._pinnable = (System.Pinnable<T>) null;
+#pragma warning restore CS8625
       this._byteOffset = new IntPtr(pointer);
     }
 
@@ -165,8 +182,8 @@ namespace System
     public override unsafe string ToString()
     {
       if (!(typeof (T) == typeof (char)))
-        return string.Format("System.ReadOnlySpan<{0}>[{1}]", typeof (T).Name, this._length);
-      if (this._byteOffset == MemoryExtensions.StringAdjustment && Unsafe.As<object>(this._pinnable) is string str && this._length == str.Length)
+        return string.Format("System.ReadOnlySpan<{0}>[{1}]", (object) typeof (T).Name, (object) this._length);
+      if (this._byteOffset == MemoryExtensions.StringAdjustment && Unsafe.As<object>((object) this._pinnable) is string str && this._length == str.Length)
         return str;
       fixed (char* chPtr = &Unsafe.As<T, char>(ref this.DangerousGetPinnableReference()))
         return new string(chPtr, 0, this._length);

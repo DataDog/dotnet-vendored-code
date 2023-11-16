@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.ParameterHandleCollection
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,7 +17,7 @@ using System.Collections.Generic;
 namespace System.Reflection.Metadata
 {
     /// <summary>Collection of parameters of a specified method.</summary>
-    public readonly struct ParameterHandleCollection : 
+    internal readonly struct ParameterHandleCollection : 
     IReadOnlyCollection<ParameterHandle>,
     IEnumerable<ParameterHandle>,
     IEnumerable
@@ -45,7 +50,7 @@ namespace System.Reflection.Metadata
 
 
     #nullable enable
-    public struct Enumerator : IEnumerator<ParameterHandle>, IDisposable, IEnumerator
+    internal struct Enumerator : IEnumerator<ParameterHandle>, IDisposable, IEnumerator
     {
 
       #nullable disable

@@ -1,22 +1,25 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.MetadataReader
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.MemoryMappedFiles;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Collections.Immutable;
 using System.Reflection.Internal;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 using Microsoft.Win32.SafeHandles;
-using System;
+using System.Collections.Immutable;
 
 #nullable enable
 namespace System.Reflection.Metadata
@@ -24,7 +27,7 @@ namespace System.Reflection.Metadata
     /// <summary>
     /// Reads metadata as defined byte the ECMA 335 CLI specification.
     /// </summary>
-    public sealed class MetadataReader
+    internal sealed class MetadataReader
     {
         internal readonly NamespaceCache NamespaceCache;
         internal readonly MemoryBlock Block;
@@ -129,7 +132,7 @@ namespace System.Reflection.Metadata
           Version version,
           StringHandle cultureHandle,
           BlobHandle publicKeyOrTokenHandle,
-          System.Reflection.AssemblyHashAlgorithm assemblyHashAlgorithm,
+          AssemblyHashAlgorithm assemblyHashAlgorithm,
           AssemblyFlags flags)
         {
             string str1 = this.GetString(nameHandle);

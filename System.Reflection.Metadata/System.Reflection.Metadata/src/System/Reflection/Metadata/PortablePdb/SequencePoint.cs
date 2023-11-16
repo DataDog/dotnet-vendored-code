@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.SequencePoint
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection.Internal;
@@ -13,7 +18,7 @@ using System.Reflection.Internal;
 namespace System.Reflection.Metadata
 {
     [DebuggerDisplay("{GetDebuggerDisplay(),nq}")]
-  public readonly struct SequencePoint : IEquatable<SequencePoint>
+  internal readonly struct SequencePoint : IEquatable<SequencePoint>
   {
     public const int HiddenLine = 16707566;
 

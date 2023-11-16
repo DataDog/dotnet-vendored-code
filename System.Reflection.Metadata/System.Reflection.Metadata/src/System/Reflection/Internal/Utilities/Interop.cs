@@ -1,10 +1,9 @@
-﻿using System;
 using System.Runtime.InteropServices;
 
 namespace System.Reflection.Internal.Utilities
 {
     #nullable enable
-public static class Interop
+internal static class Interop
 {
   internal static class Libraries
   {
@@ -52,7 +51,7 @@ public static class Interop
     internal const string Xolehlp = "xolehlp.dll";
   }
 
-  public static class Kernel32
+  internal static class Kernel32
   {
     [LibraryImport("kernel32.dll", SetLastError = true)]
     [DllImport("kernel32.dll", SetLastError = true)]

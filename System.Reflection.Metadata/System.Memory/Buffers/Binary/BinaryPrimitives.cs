@@ -1,17 +1,23 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.Binary.BinaryPrimitives
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace System.Buffers.Binary
 {
-    public static class BinaryPrimitives
+    internal static class BinaryPrimitives
   {
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static sbyte ReverseEndianness(sbyte value) => value;
 
@@ -27,11 +33,11 @@ namespace System.Buffers.Binary
     [MethodImpl((MethodImplOptions) 256)]
     public static byte ReverseEndianness(byte value) => value;
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static ushort ReverseEndianness(ushort value) => (ushort) (((int) value >> 8) + ((int) value << 8));
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static uint ReverseEndianness(uint value)
     {
@@ -40,7 +46,7 @@ namespace System.Buffers.Binary
       return (uint) (((int) (num1 >> 8) | (int) num1 << 24) + ((int) num2 << 8 | (int) (num2 >> 24)));
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static ulong ReverseEndianness(ulong value) => ((ulong) BinaryPrimitives.ReverseEndianness((uint) value) << 32) + (ulong) BinaryPrimitives.ReverseEndianness((uint) (value >> 32));
 
@@ -71,7 +77,7 @@ namespace System.Buffers.Binary
       return num;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static ushort ReadUInt16BigEndian(ReadOnlySpan<byte> source)
     {
@@ -81,7 +87,7 @@ namespace System.Buffers.Binary
       return num;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static uint ReadUInt32BigEndian(ReadOnlySpan<byte> source)
     {
@@ -91,7 +97,7 @@ namespace System.Buffers.Binary
       return num;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static ulong ReadUInt64BigEndian(ReadOnlySpan<byte> source)
     {
@@ -128,7 +134,7 @@ namespace System.Buffers.Binary
       return flag;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryReadUInt16BigEndian(ReadOnlySpan<byte> source, out ushort value)
     {
@@ -138,7 +144,7 @@ namespace System.Buffers.Binary
       return flag;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryReadUInt32BigEndian(ReadOnlySpan<byte> source, out uint value)
     {
@@ -148,7 +154,7 @@ namespace System.Buffers.Binary
       return flag;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryReadUInt64BigEndian(ReadOnlySpan<byte> source, out ulong value)
     {
@@ -185,7 +191,7 @@ namespace System.Buffers.Binary
       return num;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static ushort ReadUInt16LittleEndian(ReadOnlySpan<byte> source)
     {
@@ -195,7 +201,7 @@ namespace System.Buffers.Binary
       return num;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static uint ReadUInt32LittleEndian(ReadOnlySpan<byte> source)
     {
@@ -205,7 +211,7 @@ namespace System.Buffers.Binary
       return num;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static ulong ReadUInt64LittleEndian(ReadOnlySpan<byte> source)
     {
@@ -242,7 +248,7 @@ namespace System.Buffers.Binary
       return flag;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryReadUInt16LittleEndian(ReadOnlySpan<byte> source, out ushort value)
     {
@@ -252,7 +258,7 @@ namespace System.Buffers.Binary
       return flag;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryReadUInt32LittleEndian(ReadOnlySpan<byte> source, out uint value)
     {
@@ -262,7 +268,7 @@ namespace System.Buffers.Binary
       return flag;
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryReadUInt64LittleEndian(ReadOnlySpan<byte> source, out ulong value)
     {
@@ -296,7 +302,7 @@ namespace System.Buffers.Binary
       MemoryMarshal.Write<long>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static void WriteUInt16BigEndian(Span<byte> destination, ushort value)
     {
@@ -305,7 +311,7 @@ namespace System.Buffers.Binary
       MemoryMarshal.Write<ushort>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static void WriteUInt32BigEndian(Span<byte> destination, uint value)
     {
@@ -314,7 +320,7 @@ namespace System.Buffers.Binary
       MemoryMarshal.Write<uint>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static void WriteUInt64BigEndian(Span<byte> destination, ulong value)
     {
@@ -347,7 +353,7 @@ namespace System.Buffers.Binary
       return MemoryMarshal.TryWrite<long>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryWriteUInt16BigEndian(Span<byte> destination, ushort value)
     {
@@ -356,7 +362,7 @@ namespace System.Buffers.Binary
       return MemoryMarshal.TryWrite<ushort>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryWriteUInt32BigEndian(Span<byte> destination, uint value)
     {
@@ -365,7 +371,7 @@ namespace System.Buffers.Binary
       return MemoryMarshal.TryWrite<uint>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryWriteUInt64BigEndian(Span<byte> destination, ulong value)
     {
@@ -398,7 +404,7 @@ namespace System.Buffers.Binary
       MemoryMarshal.Write<long>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static void WriteUInt16LittleEndian(Span<byte> destination, ushort value)
     {
@@ -407,7 +413,7 @@ namespace System.Buffers.Binary
       MemoryMarshal.Write<ushort>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static void WriteUInt32LittleEndian(Span<byte> destination, uint value)
     {
@@ -416,7 +422,7 @@ namespace System.Buffers.Binary
       MemoryMarshal.Write<uint>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static void WriteUInt64LittleEndian(Span<byte> destination, ulong value)
     {
@@ -449,7 +455,7 @@ namespace System.Buffers.Binary
       return MemoryMarshal.TryWrite<long>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryWriteUInt16LittleEndian(Span<byte> destination, ushort value)
     {
@@ -458,7 +464,7 @@ namespace System.Buffers.Binary
       return MemoryMarshal.TryWrite<ushort>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryWriteUInt32LittleEndian(Span<byte> destination, uint value)
     {
@@ -467,7 +473,7 @@ namespace System.Buffers.Binary
       return MemoryMarshal.TryWrite<uint>(destination, ref value);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     [MethodImpl((MethodImplOptions) 256)]
     public static bool TryWriteUInt64LittleEndian(Span<byte> destination, ulong value)
     {

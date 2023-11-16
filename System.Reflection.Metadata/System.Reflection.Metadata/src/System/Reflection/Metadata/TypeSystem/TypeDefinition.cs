@@ -1,10 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.TypeDefinition
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
-using System.Reflection;
 using System.Collections.Immutable;
 using System.Reflection.Metadata.Ecma335;
 
@@ -12,7 +16,7 @@ using System.Reflection.Metadata.Ecma335;
 #nullable enable
 namespace System.Reflection.Metadata
 {
-  public readonly struct TypeDefinition
+  internal readonly struct TypeDefinition
   {
 
     #nullable disable
@@ -31,7 +35,7 @@ namespace System.Reflection.Metadata
 
     private TypeDefTreatment Treatment => (TypeDefTreatment) (this._treatmentAndRowId >> 24);
 
-    internal TypeDefinitionHandle Handle => TypeDefinitionHandle.FromRowId(this.RowId);
+    private TypeDefinitionHandle Handle => TypeDefinitionHandle.FromRowId(this.RowId);
 
     public TypeAttributes Attributes => this.Treatment == TypeDefTreatment.None ? this._reader.TypeDefTable.GetFlags(this.Handle) : this.GetProjectedFlags();
 

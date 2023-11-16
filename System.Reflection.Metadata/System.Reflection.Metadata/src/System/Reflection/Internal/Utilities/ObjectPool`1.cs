@@ -1,10 +1,16 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Internal.ObjectPool`1
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Threading;
+#pragma warning disable CS8625
 
 
 #nullable enable
@@ -66,7 +72,7 @@ namespace System.Reflection.Internal
       for (int index = 0; index < items.Length; ++index)
       {
         instance = items[index].Value;
-        if (instance != null &&  instance == Interlocked.CompareExchange<T>(ref items[index].Value, default (T), instance))
+        if ((object) instance != null && (object) instance == (object) Interlocked.CompareExchange<T>(ref items[index].Value, default (T), instance))
           goto label_5;
       }
       instance = this.CreateInstance();
@@ -85,7 +91,7 @@ label_5:
       ObjectPool<T>.Element[] items = this._items;
       for (int index = 0; index < items.Length; ++index)
       {
-        if (items[index].Value == null)
+        if ((object) items[index].Value == null)
         {
           items[index].Value = obj;
           break;

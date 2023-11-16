@@ -1,4 +1,10 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Linq.ImmutableArrayExtensions
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
@@ -13,7 +19,7 @@ namespace System.Linq
     /// <summary>LINQ extension method overrides that offer greater efficiency for <see cref="T:System.Collections.Immutable.ImmutableArray`1" /> than the standard LINQ methods
     /// 
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
-    public static class ImmutableArrayExtensions
+    internal static class ImmutableArrayExtensions
   {
     /// <summary>Projects each element of a sequence into a new form.</summary>
     /// <param name="immutableArray">The immutable array to select items from.</param>
@@ -402,7 +408,7 @@ namespace System.Linq
     /// <param name="immutableArray">The array.</param>
     /// <typeparam name="T">The type of element contained by the collection.</typeparam>
     /// <exception cref="T:System.InvalidOperationException">
-    /// <paramref name="source" /> contains more than one element.</exception>
+    /// <paramref name="immutableArray" /> contains more than one element.</exception>
     /// <returns>The element in the array, or the default value if the array is empty.</returns>
     public static T? SingleOrDefault<T>(this ImmutableArray<T> immutableArray)
     {

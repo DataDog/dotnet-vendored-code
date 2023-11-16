@@ -1,17 +1,24 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Runtime.InteropServices.MemoryMarshal
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Buffers;
-using System.Runtime.CompilerServices.Unsafe;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
+#pragma warning disable CS8625
 
 namespace System.Runtime.InteropServices
 {
-    public static class MemoryMarshal
+    internal static class MemoryMarshal
   {
     public static bool TryGetArray<T>(ReadOnlyMemory<T> memory, out ArraySegment<T> segment)
     {
@@ -153,7 +160,7 @@ namespace System.Runtime.InteropServices
         ThrowHelper.ThrowArrayTypeMismatchException();
       if ((uint) start > (uint) array.Length || (uint) length > (uint) (array.Length - start))
         ThrowHelper.ThrowArgumentOutOfRangeException();
-      return new Memory<T>(array, start, length | int.MinValue);
+      return new Memory<T>((object) array, start, length | int.MinValue);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
@@ -162,7 +169,7 @@ namespace System.Runtime.InteropServices
       if (SpanHelpers.IsReferenceOrContainsReferences<T>())
         ThrowHelper.ThrowArgumentException_InvalidTypeWithPointersNotSupported(typeof (T));
       int length = checked (span.Length * Unsafe.SizeOf<T>());
-      return new Span<byte>(Unsafe.As<Pinnable<byte>>(span.Pinnable), span.ByteOffset, length);
+      return new Span<byte>(Unsafe.As<Pinnable<byte>>((object) span.Pinnable), span.ByteOffset, length);
     }
 
     [MethodImpl((MethodImplOptions) 256)]
@@ -171,7 +178,7 @@ namespace System.Runtime.InteropServices
       if (SpanHelpers.IsReferenceOrContainsReferences<T>())
         ThrowHelper.ThrowArgumentException_InvalidTypeWithPointersNotSupported(typeof (T));
       int length = checked (span.Length * Unsafe.SizeOf<T>());
-      return new ReadOnlySpan<byte>(Unsafe.As<Pinnable<byte>>(span.Pinnable), span.ByteOffset, length);
+      return new ReadOnlySpan<byte>(Unsafe.As<Pinnable<byte>>((object) span.Pinnable), span.ByteOffset, length);
     }
 
     public static Memory<T> AsMemory<T>(ReadOnlyMemory<T> memory) => Unsafe.As<ReadOnlyMemory<T>, Memory<T>>(ref memory);
@@ -189,7 +196,7 @@ namespace System.Runtime.InteropServices
       if (SpanHelpers.IsReferenceOrContainsReferences<TTo>())
         ThrowHelper.ThrowArgumentException_InvalidTypeWithPointersNotSupported(typeof (TTo));
       int length = checked ((int) unchecked (checked ((long) span.Length * (long) Unsafe.SizeOf<TFrom>()) / (long) Unsafe.SizeOf<TTo>()));
-      return new Span<TTo>(Unsafe.As<Pinnable<TTo>>(span.Pinnable), span.ByteOffset, length);
+      return new Span<TTo>(Unsafe.As<Pinnable<TTo>>((object) span.Pinnable), span.ByteOffset, length);
     }
 
     public static ReadOnlySpan<TTo> Cast<TFrom, TTo>(ReadOnlySpan<TFrom> span)
@@ -201,7 +208,7 @@ namespace System.Runtime.InteropServices
       if (SpanHelpers.IsReferenceOrContainsReferences<TTo>())
         ThrowHelper.ThrowArgumentException_InvalidTypeWithPointersNotSupported(typeof (TTo));
       int length = checked ((int) unchecked (checked ((long) span.Length * (long) Unsafe.SizeOf<TFrom>()) / (long) Unsafe.SizeOf<TTo>()));
-      return new ReadOnlySpan<TTo>(Unsafe.As<Pinnable<TTo>>(span.Pinnable), span.ByteOffset, length);
+      return new ReadOnlySpan<TTo>(Unsafe.As<Pinnable<TTo>>((object) span.Pinnable), span.ByteOffset, length);
     }
   }
 }

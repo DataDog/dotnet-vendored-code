@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.DocumentNameBlobHandle
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 
@@ -18,7 +23,7 @@ namespace System.Reflection.Metadata
   /// The kind of the handle is <see cref="F:System.Reflection.Metadata.HandleKind.Blob" />.
   /// The handle is a specialization of <see cref="T:System.Reflection.Metadata.BlobHandle" /> and doesn't have a distinct kind.
   /// </remarks>
-  public readonly struct DocumentNameBlobHandle : IEquatable<DocumentNameBlobHandle>
+  internal readonly struct DocumentNameBlobHandle : IEquatable<DocumentNameBlobHandle>
   {
     private readonly int _heapOffset;
 

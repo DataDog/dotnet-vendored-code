@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.SignatureHeader
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
 
@@ -18,7 +23,7 @@ namespace System.Reflection.Metadata
     /// This header byte is present in all method definition, method reference, standalone method, field,
     /// property, and local variable signatures, but not in type specification signatures.
     /// </remarks>
-    public struct SignatureHeader : IEquatable<SignatureHeader>
+    internal struct SignatureHeader : IEquatable<SignatureHeader>
   {
     private readonly byte _rawValue;
     public const byte CallingConventionOrKindMask = 15;

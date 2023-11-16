@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.ManifestResourceHandleCollection
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,7 +19,7 @@ namespace System.Reflection.Metadata
     /// <summary>
     /// Represents a collection of <see cref="T:System.Reflection.Metadata.ManifestResourceHandle" />.
     /// </summary>
-    public readonly struct ManifestResourceHandleCollection : 
+    internal readonly struct ManifestResourceHandleCollection : 
     IReadOnlyCollection<ManifestResourceHandle>,
     IEnumerable<ManifestResourceHandle>,
     IEnumerable
@@ -35,7 +40,7 @@ namespace System.Reflection.Metadata
 
 
     #nullable enable
-    public struct Enumerator : IEnumerator<ManifestResourceHandle>, IDisposable, IEnumerator
+    internal struct Enumerator : IEnumerator<ManifestResourceHandle>, IDisposable, IEnumerator
     {
       private readonly int _lastRowId;
       private int _currentRowId;

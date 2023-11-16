@@ -1,14 +1,19 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.Ecma335.VirtualHeap
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Reflection.Internal;
+#pragma warning disable CS8625
 
 
 #nullable enable
@@ -24,7 +29,6 @@ namespace System.Reflection.Metadata.Ecma335
 
     protected override void Release()
     {
-      RuntimeHelpers.PrepareConstrainedRegions();
       try
       {
       }
@@ -58,14 +62,13 @@ namespace System.Reflection.Metadata.Ecma335
     internal MemoryBlock AddBlob(uint rawHandle, byte[] value)
     {
       Dictionary<uint, VirtualHeap.PinnedBlob> blobs = this.GetBlobs();
-      RuntimeHelpers.PrepareConstrainedRegions();
       MemoryBlock memoryBlock;
       try
       {
       }
       finally
       {
-        VirtualHeap.PinnedBlob pinnedBlob = new VirtualHeap.PinnedBlob(GCHandle.Alloc(value, GCHandleType.Pinned), value.Length);
+        VirtualHeap.PinnedBlob pinnedBlob = new VirtualHeap.PinnedBlob(GCHandle.Alloc((object) value, GCHandleType.Pinned), value.Length);
         blobs.Add(rawHandle, pinnedBlob);
         memoryBlock = pinnedBlob.GetMemoryBlock();
       }

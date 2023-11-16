@@ -1,13 +1,20 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Span`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Runtime.CompilerServices.Unsafe;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
+#pragma warning disable CS8625
 
 namespace System
 {
@@ -37,12 +44,16 @@ namespace System
         /// <returns></returns>
         [Obsolete("Equals() on Span will always throw an exception. Use == instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => throw new NotSupportedException(SR.NotSupported_CannotCallEqualsOnSpan);
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
+        public override bool Equals(object obj) => throw new NotSupportedException(System.Memory.SR.NotSupported_CannotCallEqualsOnSpan);
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
         /// <returns></returns>
         [Obsolete("GetHashCode() on Span will always throw an exception.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => throw new NotSupportedException(SR.NotSupported_CannotCallGetHashCodeOnSpan);
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
+        public override int GetHashCode() => throw new NotSupportedException(System.Memory.SR.NotSupported_CannotCallGetHashCodeOnSpan);
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
         public static implicit operator Span<T>(T[] array) => new Span<T>(array);
 
@@ -59,6 +70,8 @@ namespace System
         {
             if (array == null)
             {
+                ref var refThis = ref this;
+                refThis = new Span<T>();
                 // todo: fix *(Span<T>*) ref this = new Span<T>();
             }
             else
@@ -66,7 +79,7 @@ namespace System
                 if ((object)default(T) == null && array.GetType() != typeof(T[]))
                     ThrowHelper.ThrowArrayTypeMismatchException();
                 this._length = array.Length;
-                this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
+                this._pinnable = Unsafe.As<System.Pinnable<T>>((object)array);
                 this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment;
             }
         }
@@ -86,7 +99,7 @@ namespace System
                 ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
             IntPtr byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
             int length = array.Length - start;
-            return new Span<T>(Unsafe.As<System.Pinnable<T>>(array), byteOffset, length);
+            return new Span<T>(Unsafe.As<System.Pinnable<T>>((object)array), byteOffset, length);
         }
 
         /// <param name="array"></param>
@@ -99,6 +112,9 @@ namespace System
             {
                 if (start != 0 || length != 0)
                     ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
+                
+                ref var refThis = ref this;
+                refThis = new Span<T>();
                 // todo: fix *(Span<T>*) ref this = new Span<T>();
             }
             else
@@ -108,14 +124,14 @@ namespace System
                 if ((uint)start > (uint)array.Length || (uint)length > (uint)(array.Length - start))
                     ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.start);
                 this._length = length;
-                this._pinnable = Unsafe.As<System.Pinnable<T>>(array);
+                this._pinnable = Unsafe.As<System.Pinnable<T>>((object)array);
                 this._byteOffset = SpanHelpers.PerTypeValues<T>.ArrayAdjustment.Add<T>(start);
             }
         }
 
         /// <param name="pointer"></param>
         /// <param name="length"></param>
-        [CLSCompliant(false)]
+        // [CLSCompliant(false)]
         [MethodImpl((MethodImplOptions)256)]
         public unsafe Span(void* pointer, int length)
         {

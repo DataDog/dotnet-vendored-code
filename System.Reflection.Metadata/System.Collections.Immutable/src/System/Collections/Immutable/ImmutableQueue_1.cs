@@ -1,14 +1,19 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableQueue`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+#pragma warning disable CS1711
 
 
 #nullable enable
@@ -20,7 +25,7 @@ namespace System.Collections.Immutable
     /// <typeparam name="T">The type of elements in the queue.</typeparam>
     [DebuggerDisplay("IsEmpty = {IsEmpty}")]
   [DebuggerTypeProxy(typeof (ImmutableEnumerableDebuggerProxy<>))]
-  public sealed class ImmutableQueue<T> : IImmutableQueue<T>, IEnumerable<T>, IEnumerable
+  internal sealed class ImmutableQueue<T> : IImmutableQueue<T>, IEnumerable<T>, IEnumerable
   {
 
     #nullable disable
@@ -155,12 +160,9 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Enumerates the contents of an immutable queue without allocating any memory.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
     /// <typeparam name="T" />
     [EditorBrowsable(EditorBrowsableState.Advanced)]
-    public struct Enumerator
+    internal struct Enumerator
     {
 
       #nullable disable

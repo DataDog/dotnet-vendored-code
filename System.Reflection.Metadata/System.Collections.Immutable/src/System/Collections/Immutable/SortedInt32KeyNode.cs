@@ -1,10 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.SortedInt32KeyNode`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -290,7 +294,7 @@ namespace System.Collections.Immutable
 
     #nullable enable
     [EditorBrowsable(EditorBrowsableState.Advanced)]
-    public struct Enumerator : 
+    internal struct Enumerator : 
       IEnumerator<KeyValuePair<int, TValue>>,
       IDisposable,
       IEnumerator,

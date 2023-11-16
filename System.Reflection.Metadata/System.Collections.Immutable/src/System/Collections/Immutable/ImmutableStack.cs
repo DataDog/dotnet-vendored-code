@@ -1,4 +1,10 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableStack
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
@@ -12,7 +18,7 @@ namespace System.Collections.Immutable
     /// <summary>Provides a set of initialization methods for instances of the <see cref="T:System.Collections.Immutable.ImmutableStack`1" /> class.
     /// 
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
-    public static class ImmutableStack
+    internal static class ImmutableStack
   {
     /// <summary>Creates an empty immutable stack.</summary>
     /// <typeparam name="T">The type of items to be stored in the immutable stack.</typeparam>

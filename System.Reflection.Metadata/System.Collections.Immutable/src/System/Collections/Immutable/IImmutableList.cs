@@ -1,10 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.IImmutableList`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 
@@ -15,7 +19,7 @@ namespace System.Collections.Immutable
     /// 
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
-    public interface IImmutableList<T> : 
+    internal interface IImmutableList<T> : 
     IReadOnlyList<T>,
     IReadOnlyCollection<T>,
     IEnumerable<T>,
@@ -103,7 +107,7 @@ namespace System.Collections.Immutable
     /// <param name="equalityComparer">The equality comparer to use for matching <paramref name="oldValue" />.</param>
     /// <exception cref="T:System.ArgumentException">
     /// <paramref name="oldValue" /> does not exist in the list.</exception>
-    /// <returns>A new list that contains <paramref name="newValue" />, even if <paramref name="oldvalue" /> is the same as <paramref name="newValue" />.</returns>
+    /// <returns>A new list that contains <paramref name="newValue" />, even if <paramref name="oldValue" /> is the same as <paramref name="newValue" />.</returns>
     IImmutableList<T> Replace(T oldValue, T newValue, IEqualityComparer<T>? equalityComparer);
   }
 }

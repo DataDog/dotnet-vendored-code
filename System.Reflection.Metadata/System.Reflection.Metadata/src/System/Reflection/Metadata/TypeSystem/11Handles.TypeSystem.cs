@@ -1,15 +1,19 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.FieldDefinitionHandle
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
 
 #nullable enable
-using System;
-
 namespace System.Reflection.Metadata
 {
-  public readonly struct FieldDefinitionHandle : IEquatable<FieldDefinitionHandle>
+  internal readonly struct FieldDefinitionHandle : IEquatable<FieldDefinitionHandle>
   {
     private const uint tokenType = 67108864;
     private const byte tokenTypeSmall = 4;

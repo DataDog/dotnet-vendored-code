@@ -1,10 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableList`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,8 +16,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 
 #nullable enable
@@ -25,7 +27,7 @@ namespace System.Collections.Immutable
     /// <typeparam name="T">The type of elements in the list.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
   [DebuggerTypeProxy(typeof (ImmutableEnumerableDebuggerProxy<>))]
-  public sealed class ImmutableList<T> : 
+  internal sealed class ImmutableList<T> : 
     IImmutableList<T>,
     IReadOnlyList<T>,
     IReadOnlyCollection<T>,
@@ -371,7 +373,7 @@ namespace System.Collections.Immutable
 
     /// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the entire immutable list.</summary>
     /// <param name="match">The delegate that defines the conditions of the element to search for.</param>
-    /// <returns>The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type <paramref name="T" />.</returns>
+    /// <returns>The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T />.</returns>
     public T? Find(Predicate<T> match) => this._root.Find(match);
 
     /// <summary>Retrieves all the elements that match the conditions defined by the specified predicate.</summary>
@@ -399,7 +401,7 @@ namespace System.Collections.Immutable
 
     /// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the last occurrence within the entire immutable list.</summary>
     /// <param name="match">The delegate that defines the conditions of the element to search for.</param>
-    /// <returns>The last element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type <paramref name="T" />.</returns>
+    /// <returns>The last element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T />.</returns>
     public T? FindLast(Predicate<T> match) => this._root.FindLast(match);
 
     /// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the entire immutable list.</summary>
@@ -705,13 +707,12 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Represents a list that mutates with little or no memory allocations and that can produce or build on immutable list instances very efficiently.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
     /// <typeparam name="T" />
+#pragma warning restore CS1711
     [DebuggerDisplay("Count = {Count}")]
     [DebuggerTypeProxy(typeof (ImmutableListBuilderDebuggerProxy<>))]
-    public sealed class Builder : 
+    internal sealed class Builder : 
       IList<T>,
       ICollection<T>,
       IEnumerable<T>,
@@ -901,7 +902,7 @@ namespace System.Collections.Immutable
 
       /// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the entire immutable list.</summary>
       /// <param name="match">The delegate that defines the conditions of the element to search for.</param>
-      /// <returns>The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type <paramref name="T" />.</returns>
+      /// <returns>The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T />.</returns>
       public T? Find(Predicate<T> match) => this._root.Find(match);
 
       /// <summary>Retrieves all the elements that match the conditions defined by the specified predicate.</summary>
@@ -929,7 +930,7 @@ namespace System.Collections.Immutable
 
       /// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the last occurrence within the entire immutable list.</summary>
       /// <param name="match">The delegate that defines the conditions of the element to search for.</param>
-      /// <returns>The last element that matches the conditions defined by the specified predicate, found; otherwise, the default value for type <paramref name="T" />.</returns>
+      /// <returns>The last element that matches the conditions defined by the specified predicate, found; otherwise, the default value for typeT />.</returns>
       public T? FindLast(Predicate<T> match) => this._root.FindLast(match);
 
       /// <summary>Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the last occurrence within the entire immutable list.</summary>
@@ -979,14 +980,14 @@ namespace System.Collections.Immutable
       /// <summary>Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the immutable list that extends from the first element to the specified index.</summary>
       /// <param name="item">The object to locate in the immutable list. The value can be <see langword="null" /> for reference types.</param>
       /// <param name="startIndex">The zero-based starting index of the backward search.</param>
-      /// <returns>The zero-based index of the last occurrence of <paramref name="item" /> within the range of elements in the immutable list that extends from the first element to <paramref name="index" />, if found; otherwise, -1.</returns>
+      /// <returns>The zero-based index of the last occurrence of <paramref name="item" /> within the range of elements in the immutable list that extends from the first element to <paramref name="startIndex" />, if found; otherwise, -1.</returns>
       public int LastIndexOf(T item, int startIndex) => this.Count == 0 && startIndex == 0 ? -1 : this._root.LastIndexOf(item, startIndex, startIndex + 1, (IEqualityComparer<T>) EqualityComparer<T>.Default);
 
       /// <summary>Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the immutable list that contains the specified number of elements and ends at the specified index.</summary>
       /// <param name="item">The object to locate in the immutable list. The value can be <see langword="null" /> for reference types.</param>
       /// <param name="startIndex">The zero-based starting index of the backward search.</param>
       /// <param name="count">The number of elements in the section to search.</param>
-      /// <returns>The zero-based index of the last occurrence of <paramref name="item" /> within the range of elements in the immutable list that contains <paramref name="count" /> number of elements and ends at <paramref name="index" />, if found; otherwise, -1.</returns>
+      /// <returns>The zero-based index of the last occurrence of <paramref name="item" /> within the range of elements in the immutable list that contains <paramref name="count" /> number of elements and ends at <paramref name="startIndex" />, if found; otherwise, -1.</returns>
       public int LastIndexOf(T item, int startIndex, int count) => this._root.LastIndexOf(item, startIndex, count, (IEqualityComparer<T>) EqualityComparer<T>.Default);
 
       /// <summary>Searches for the specified object and returns the zero-based index of the last occurrence within the range of elements in the immutable list that contains the specified number of elements and ends at the specified index.</summary>
@@ -994,7 +995,7 @@ namespace System.Collections.Immutable
       /// <param name="startIndex">The zero-based starting index of the search. 0 (zero) is valid in an empty list.</param>
       /// <param name="count">The number of elements to search.</param>
       /// <param name="equalityComparer">The value comparer to use for comparing elements for equality.</param>
-      /// <returns>The zero-based index of the first occurrence of item within the range of elements in the immutable list that starts at <paramref name="index" /> and contains <paramref name="count" /> number of elements, if found; otherwise, -1</returns>
+      /// <returns>The zero-based index of the first occurrence of item within the range of elements in the immutable list that starts at <paramref name="startIndex" /> and contains <paramref name="count" /> number of elements, if found; otherwise, -1</returns>
       public int LastIndexOf(
         T item,
         int startIndex,
@@ -1272,18 +1273,19 @@ namespace System.Collections.Immutable
         get
         {
           if (this._syncRoot == null)
-            Interlocked.CompareExchange<object>(ref this._syncRoot, new object(), (object) null);
+#pragma warning disable CS8625
+              Interlocked.CompareExchange<object>(ref this._syncRoot, new object(), (object) null);
+#pragma warning restore CS8625
           return this._syncRoot;
         }
       }
     }
 
-    /// <summary>Enumerates the contents of a binary tree.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
     /// <typeparam name="T" />
+#pragma warning restore CS1711
     [EditorBrowsable(EditorBrowsableState.Advanced)]
-    public struct Enumerator : 
+    internal struct Enumerator : 
       IEnumerator<T>,
       IDisposable,
       IEnumerator,

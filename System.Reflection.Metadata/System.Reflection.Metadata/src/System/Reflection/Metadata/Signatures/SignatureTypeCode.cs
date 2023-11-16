@@ -1,4 +1,11 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Reflection.Metadata.SignatureTypeCode
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
@@ -8,7 +15,7 @@ namespace System.Reflection.Metadata
   /// <summary>
   /// Represents the type codes that are used in signature encoding.
   /// </summary>
-  public enum SignatureTypeCode : byte
+  internal enum SignatureTypeCode : byte
   {
     /// <summary>
     /// Represents an invalid or uninitialized type code. It will not appear in valid signatures.

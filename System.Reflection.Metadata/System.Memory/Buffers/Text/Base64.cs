@@ -1,15 +1,22 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.Text.Base64
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
 using System.Runtime.CompilerServices;
-using System.Runtime.CompilerServices.Unsafe;
 using System.Runtime.InteropServices;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
 
 namespace System.Buffers.Text
 {
-    public static class Base64
+    internal static class Base64
   {
     private static readonly sbyte[] s_decodingMap = new sbyte[256]
     {

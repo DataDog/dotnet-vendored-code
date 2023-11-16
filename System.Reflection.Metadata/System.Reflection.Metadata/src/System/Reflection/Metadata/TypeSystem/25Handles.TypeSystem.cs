@@ -1,17 +1,21 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.UserStringHandle
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
 
 #nullable enable
-using System;
-
 namespace System.Reflection.Metadata
 {
   /// <summary>#UserString heap handle.</summary>
   /// <remarks>The handle is 32-bit wide.</remarks>
-  public readonly struct UserStringHandle : IEquatable<UserStringHandle>
+  internal readonly struct UserStringHandle : IEquatable<UserStringHandle>
   {
     private readonly int _offset;
 
