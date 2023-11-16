@@ -1,5 +1,10 @@
-﻿using System;
-using System.Diagnostics;
+
+
+
+
+
+
+#nullable enable
 using System.Threading;
 
 namespace System.Buffers
@@ -186,7 +191,7 @@ namespace System.Buffers
             /// </summary>
             internal Bucket(int bufferLength, int numberOfBuffers, int poolId)
             {
-                _lock = new SpinLock(Debugger.IsAttached); // only enable thread tracking if debugger is attached; it adds non-trivial overheads to Enter/Exit
+                _lock = new SpinLock(global::System.Diagnostics.Debugger.IsAttached); // only enable thread tracking if debugger is attached; it adds non-trivial overheads to Enter/Exit
                 _buffers = new T[numberOfBuffers][];
                 _bufferLength = bufferLength;
                 _poolId = poolId;

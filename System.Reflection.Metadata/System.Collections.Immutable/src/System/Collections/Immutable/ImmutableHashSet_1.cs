@@ -1,15 +1,17 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableHashSet`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Collections.Generic;
 using System.Linq;
 
 
@@ -22,7 +24,7 @@ namespace System.Collections.Immutable
     /// <typeparam name="T">The type of elements in the hash set.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
   [DebuggerTypeProxy(typeof (ImmutableEnumerableDebuggerProxy<>))]
-  public sealed class ImmutableHashSet<T> : 
+  internal sealed class ImmutableHashSet<T> : 
     IImmutableSet<T>,
     IReadOnlyCollection<T>,
     IEnumerable<T>,
@@ -679,12 +681,11 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Represents a hash set that mutates with little or no memory allocations and that can produce or build on immutable hash set instances very efficiently.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
     /// <typeparam name="T" />
+#pragma warning restore CS1711
     [DebuggerDisplay("Count = {Count}")]
-    public sealed class Builder : 
+    internal sealed class Builder : 
       IReadOnlyCollection<T>,
       IEnumerable<T>,
       IEnumerable,
@@ -921,11 +922,10 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Enumerates the contents of the immutable hash set without allocating any memory.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
     /// <typeparam name="T" />
-    public struct Enumerator : IEnumerator<T>, IDisposable, IEnumerator, IStrongEnumerator<T>
+#pragma warning restore CS1711
+    internal struct Enumerator : IEnumerator<T>, IDisposable, IEnumerator, IStrongEnumerator<T>
     {
 
       #nullable disable

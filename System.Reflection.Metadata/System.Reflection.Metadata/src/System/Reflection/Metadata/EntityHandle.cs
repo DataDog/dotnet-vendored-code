@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.EntityHandle
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 
@@ -17,7 +22,7 @@ namespace System.Reflection.Metadata
   /// Use <see cref="T:System.Reflection.Metadata.EntityHandle" /> to store multiple kinds of entity handles.
   /// It has smaller memory footprint than <see cref="T:System.Reflection.Metadata.Handle" />.
   /// </remarks>
-  public readonly struct EntityHandle : IEquatable<EntityHandle>
+  internal readonly struct EntityHandle : IEquatable<EntityHandle>
   {
     private readonly uint _vToken;
     public static readonly ModuleDefinitionHandle ModuleDefinition = new ModuleDefinitionHandle(1);

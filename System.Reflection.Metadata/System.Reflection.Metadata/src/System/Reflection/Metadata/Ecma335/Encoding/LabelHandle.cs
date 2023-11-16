@@ -1,16 +1,21 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.Ecma335.LabelHandle
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 
 #nullable enable
 namespace System.Reflection.Metadata.Ecma335
 {
-  public readonly struct LabelHandle : IEquatable<LabelHandle>
+  internal readonly struct LabelHandle : IEquatable<LabelHandle>
   {
     /// <summary>
     /// 1-based id identifying the label within the context of a <see cref="T:System.Reflection.Metadata.Ecma335.ControlFlowBuilder" />.

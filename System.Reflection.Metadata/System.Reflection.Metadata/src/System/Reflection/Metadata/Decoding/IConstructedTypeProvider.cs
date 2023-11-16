@@ -1,15 +1,20 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.IConstructedTypeProvider`1
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
 using System.Collections.Immutable;
 
-
 #nullable enable
 namespace System.Reflection.Metadata
 {
-  public interface IConstructedTypeProvider<TType> : ISZArrayTypeProvider<TType>
+  internal interface IConstructedTypeProvider<TType> : ISZArrayTypeProvider<TType>
   {
     /// <summary>
     /// Gets the type symbol for a generic instantiation of the given generic type with the given type arguments.

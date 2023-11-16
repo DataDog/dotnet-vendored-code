@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.GenericParameterHandleCollection
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,7 +19,7 @@ namespace System.Reflection.Metadata
     /// <summary>
     /// Represents generic type parameters of a method or type.
     /// </summary>
-    public readonly struct GenericParameterHandleCollection : 
+    internal readonly struct GenericParameterHandleCollection : 
     IReadOnlyList<GenericParameterHandle>,
     IReadOnlyCollection<GenericParameterHandle>,
     IEnumerable<GenericParameterHandle>,
@@ -51,7 +56,7 @@ namespace System.Reflection.Metadata
 
 
     #nullable enable
-    public struct Enumerator : IEnumerator<GenericParameterHandle>, IDisposable, IEnumerator
+    internal struct Enumerator : IEnumerator<GenericParameterHandle>, IDisposable, IEnumerator
     {
       private readonly int _lastRowId;
       private int _currentRowId;

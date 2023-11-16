@@ -1,14 +1,20 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.BuffersExtensions
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Runtime.CompilerServices;
 
 namespace System.Buffers
 {
-    public static class BuffersExtensions
+    internal static class BuffersExtensions
   {
     [MethodImpl((MethodImplOptions) 256)]
     public static SequencePosition? PositionOf<T>(in this ReadOnlySequence<T> source, T value) where T : IEquatable<T>

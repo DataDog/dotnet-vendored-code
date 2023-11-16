@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.IImmutableSet`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System.Collections;
 using System.Collections.Generic;
 
 
@@ -14,7 +19,7 @@ namespace System.Collections.Immutable
     /// 
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
     /// <typeparam name="T">The type of element stored in the set.</typeparam>
-    public interface IImmutableSet<T> : IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable
+    internal interface IImmutableSet<T> : IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable
   {
     /// <summary>Retrieves an empty immutable set that has the same sorting and ordering semantics as this instance.</summary>
     /// <returns>An empty set that has the same sorting and ordering semantics as this instance.</returns>

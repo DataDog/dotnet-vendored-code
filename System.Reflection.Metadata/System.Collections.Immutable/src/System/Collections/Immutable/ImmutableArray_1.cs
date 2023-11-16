@@ -1,10 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableArray`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +16,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Versioning;
 
+#pragma warning disable CS1711
 
 #nullable enable
 namespace System.Collections.Immutable
@@ -615,7 +620,7 @@ namespace System.Collections.Immutable
 
         /// <summary>Filters the elements of this array to those assignable to the specified type.</summary>
         /// <typeparam name="TResult">The type to filter the elements of the sequence on.</typeparam>
-        /// <returns>An <see cref="T:System.Collections.IEnumerable" /> that contains elements from the input sequence of type of <paramref name="TResult" />.</returns>
+        /// <returns>An <see cref="T:System.Collections.IEnumerable" /> that contains elements from the input sequence of type of TResult />.</returns>
         public IEnumerable<TResult> OfType<TResult>()
         {
             ImmutableArray<T> immutableArray = this;
@@ -856,7 +861,7 @@ namespace System.Collections.Immutable
         /// <summary>Replaces the item at the specified index with the specified item.</summary>
         /// <param name="index">The index of the item to replace.</param>
         /// <param name="value">The value to add to the list.</param>
-        /// <returns>The new array that contains <paramref name="item" /> at the specified index.</returns>
+        /// <returns>The new array that contains <paramref name="value" /> at the specified index.</returns>
         IImmutableList<T> IImmutableList<T>.SetItem(int index, T value)
         {
             ImmutableArray<T> immutableArray = this;
@@ -1199,7 +1204,7 @@ namespace System.Collections.Immutable
 
         /// <summary>Copies the contents of this array to the specified array starting at the specified destination index.</summary>
         /// <param name="destination">The array to copy to.</param>
-        /// <param name="destinationIndex">The index in <paramref name="array" /> where copying begins.</param>
+        /// <param name="destinationIndex">The index in <paramref name="destination" /> where copying begins.</param>
         public void CopyTo(T[] destination, int destinationIndex)
         {
             ImmutableArray<T> immutableArray = this;
@@ -1210,7 +1215,7 @@ namespace System.Collections.Immutable
         /// <summary>Copies the specified items in this array to the specified array at the specified starting index.</summary>
         /// <param name="sourceIndex">The index of this array where copying begins.</param>
         /// <param name="destination">The array to copy to.</param>
-        /// <param name="destinationIndex">The index in <paramref name="array" /> where copying begins.</param>
+        /// <param name="destinationIndex">The index in <paramref name="destination" /> where copying begins.</param>
         /// <param name="length">The number of elements to copy from this array.</param>
         public void CopyTo(int sourceIndex, T[] destination, int destinationIndex, int length)
         {

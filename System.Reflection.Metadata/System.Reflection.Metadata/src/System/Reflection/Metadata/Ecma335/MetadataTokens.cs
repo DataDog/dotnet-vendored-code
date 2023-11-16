@@ -1,15 +1,19 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.Ecma335.MetadataTokens
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
 
 #nullable enable
-using System;
-
 namespace System.Reflection.Metadata.Ecma335
 {
-  public static class MetadataTokens
+  internal static class MetadataTokens
   {
     /// <summary>
     /// Maximum number of tables that can be present in Ecma335 metadata.

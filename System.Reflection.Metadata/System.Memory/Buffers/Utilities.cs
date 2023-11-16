@@ -1,8 +1,14 @@
-﻿using System;
+
+
+
+
+
+
+#nullable enable
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Runtime.CompilerServices.Unsafe;
 using System.Runtime.InteropServices;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
 
 namespace System.Buffers
 {
@@ -16,6 +22,58 @@ namespace System.Buffers
             08, 12, 20, 28, 15, 17, 24, 07,
             19, 27, 23, 06, 26, 05, 04, 31
         };
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static int SelectBucketIndex(int bufferSize)
+        {
+            // Buffers are bucketed so that a request between 2^(n-1) + 1 and 2^n is given a buffer of 2^n
+            // Bucket index is log2(bufferSize - 1) with the exception that buffers between 1 and 16 bytes
+            // are combined, and the index is slid down by 3 to compensate.
+            // Zero is a valid bufferSize, and it is assigned the highest bucket index so that zero-length
+            // buffers are not retained by the pool. The pool will return the Array.Empty singleton for these.
+            return Log2((uint)bufferSize - 1 | 15) - 3;
+        }
+
+        /// <summary>
+        /// Returns the integer (floor) log of the specified value, base 2.
+        /// Note that by convention, input value 0 returns 0 since log(0) is undefined.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int Log2(uint value)
+        {
+            // The 0->0 contract is fulfilled by setting the LSB to 1.
+            // Log(1) is 0, and setting the LSB for values > 1 does not change the log2 result.
+            value |= 1;
+
+            // value    lzcnt   actual  expected
+            // ..0001   31      31-31    0
+            // ..0010   30      31-30    1
+            // 0010..    2      31-2    29
+            // 0100..    1      31-1    30
+            // 1000..    0      31-0    31
+
+            // Fallback contract is 0->0
+            return Log2SoftwareFallback(value);
+        }
+
+        /// <summary>
+        /// Returns the integer (floor) log of the specified value, base 2.
+        /// Note that by convention, input value 0 returns 0 since log(0) is undefined.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int Log2(ulong value)
+        {
+            value |= 1;
+
+            var hi = (uint)(value >> 32);
+
+            if (hi == 0)
+                return Log2((uint)value);
+
+            return 32 + Log2(hi);
+        }
 
         /// <summary>
         /// Returns the integer (floor) log of the specified value, base 2.
@@ -44,18 +102,6 @@ namespace System.Buffers
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal static int SelectBucketIndex(int bufferSize)
-        {
-            // Buffers are bucketed so that a request between 2^(n-1) + 1 and 2^n is given a buffer of 2^n
-            // Bucket index is log2(bufferSize - 1) with the exception that buffers between 1 and 16 bytes
-            // are combined, and the index is slid down by 3 to compensate.
-            // Zero is a valid bufferSize, and it is assigned the highest bucket index so that zero-length
-            // buffers are not retained by the pool. The pool will return the Array.Empty singleton for these.
-            return Log2SoftwareFallback((uint)bufferSize - 1 | 15) - 3;
-            // return BitOperations.Log2((uint)bufferSize - 1 | 15) - 3;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static int GetMaxSizeForBucket(int binIndex)
         {
             int maxSize = 16 << binIndex;
@@ -72,8 +118,12 @@ namespace System.Buffers
 
         internal static MemoryPressure GetMemoryPressure()
         {
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
             const double HighPressureThreshold = .90;       // Percent of GC memory pressure threshold we consider "high"
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
             const double MediumPressureThreshold = .70;     // Percent of GC memory pressure threshold we consider "medium"
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
             //todo: fix
             //GCMemoryInfo memoryInfo = GC.GetGCMemoryInfo();
             var memoryInfo = GC.GetTotalMemory(false);

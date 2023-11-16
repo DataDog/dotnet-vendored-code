@@ -1,16 +1,22 @@
 ﻿
+
+
+
+
+
+#nullable enable
+
 // Type: System.Memory`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Buffers;
-using System.Runtime.CompilerServices.Unsafe;
-using System.Runtime.InteropServices;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
+using MemoryMarshal = System.Runtime.InteropServices.MemoryMarshal;
 
 namespace System
 {
@@ -33,9 +39,9 @@ namespace System
             }
             else
             {
-                if (default(T) == null && array.GetType() != typeof(T[]))
+                if ((object)default(T) == null && array.GetType() != typeof(T[]))
                     ThrowHelper.ThrowArrayTypeMismatchException();
-                this._object = array;
+                this._object = (object)array;
                 this._index = 0;
                 this._length = array.Length;
             }

@@ -1,16 +1,22 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.ReadOnlyMemory`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Buffers;
-using System.Runtime.CompilerServices.Unsafe;
-using System.Runtime.InteropServices;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
+using MemoryMarshal = System.Runtime.InteropServices.MemoryMarshal;
 
 namespace System
 {
@@ -111,7 +117,7 @@ namespace System
                 if (this._index < 0)
                     return (ReadOnlySpan<T>)((MemoryManager<T>)this._object).GetSpan().Slice(this._index & int.MaxValue, this._length);
                 if (typeof(T) == typeof(char) && this._object is string o)
-                    return new ReadOnlySpan<T>(Unsafe.As<Pinnable<T>>(o), MemoryExtensions.StringAdjustment, o.Length).Slice(this._index, this._length);
+                    return new ReadOnlySpan<T>(Unsafe.As<Pinnable<T>>((object)o), MemoryExtensions.StringAdjustment, o.Length).Slice(this._index, this._length);
                 return this._object != null ? new ReadOnlySpan<T>((T[])this._object, this._index, this._length & int.MaxValue) : new ReadOnlySpan<T>();
             }
         }
@@ -126,14 +132,14 @@ namespace System
                 return ((MemoryManager<T>)this._object).Pin(this._index & int.MaxValue);
             if (typeof(T) == typeof(char) && this._object is string str)
             {
-                GCHandle handle = GCHandle.Alloc(str, GCHandleType.Pinned);
+                GCHandle handle = GCHandle.Alloc((object)str, GCHandleType.Pinned);
                 return new MemoryHandle(Unsafe.Add<T>((void*)handle.AddrOfPinnedObject(), this._index), handle);
             }
             if (!(this._object is T[] objArray))
                 return new MemoryHandle();
             if (this._length < 0)
                 return new MemoryHandle(Unsafe.Add<T>(Unsafe.AsPointer<T>(ref MemoryMarshal.GetReference<T>((System.Span<T>)objArray)), this._index));
-            GCHandle handle1 = GCHandle.Alloc(objArray, GCHandleType.Pinned);
+            GCHandle handle1 = GCHandle.Alloc((object)objArray, GCHandleType.Pinned);
             return new MemoryHandle(Unsafe.Add<T>((void*)handle1.AddrOfPinnedObject(), this._index), handle1);
         }
 

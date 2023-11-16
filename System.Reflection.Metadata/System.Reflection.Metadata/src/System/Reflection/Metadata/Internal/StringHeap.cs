@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.Ecma335.StringHeap
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -165,7 +170,7 @@ namespace System.Reflection.Metadata.Ecma335
         case StringKind.WinRTPrefixed:
           return this.GetNonVirtualString(handle, utf8Decoder, MetadataReader.WinRTPrefix);
         default:
-          throw ExceptionUtilities.UnexpectedValue(handle.StringKind);
+          throw ExceptionUtilities.UnexpectedValue((object) handle.StringKind);
       }
     }
 
@@ -187,7 +192,7 @@ namespace System.Reflection.Metadata.Ecma335
               numArray1 = this.GetNonVirtualStringBytes(handle, MetadataReader.WinRTPrefix);
               break;
             default:
-              throw ExceptionUtilities.UnexpectedValue(handle.StringKind);
+              throw ExceptionUtilities.UnexpectedValue((object) handle.StringKind);
           }
           byte[] numArray2 = numArray1;
           block = virtualHeap.AddBlob(handle.RawValue, numArray2);

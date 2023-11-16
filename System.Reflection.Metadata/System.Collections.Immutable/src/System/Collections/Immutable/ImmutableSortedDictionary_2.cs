@@ -1,31 +1,30 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableSortedDictionary`2
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 
 #nullable enable
 namespace System.Collections.Immutable
 {
-    /// <summary>Represents an immutable sorted dictionary.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
     /// <typeparam name="TKey">The type of the key contained in the dictionary.</typeparam>
     /// <typeparam name="TValue">The type of the value contained in the dictionary.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
     [DebuggerTypeProxy(typeof(ImmutableDictionaryDebuggerProxy<,>))]
-    public sealed class ImmutableSortedDictionary<TKey, TValue> :
+    internal sealed class ImmutableSortedDictionary<TKey, TValue> :
       IImmutableDictionary<TKey, TValue>,
       IReadOnlyDictionary<TKey, TValue>,
       IReadOnlyCollection<KeyValuePair<TKey, TValue>>,
@@ -143,7 +142,7 @@ namespace System.Collections.Immutable
 
 
 #nullable enable
-        /// <summary>Gets the <paramref name="TValue" /> associated with the specified key.</summary>
+        /// <summary>Gets the TValue /> associated with the specified key.</summary>
         /// <param name="key">The key to retrieve the value for.</param>
         /// <returns>The value associated with the specified key. If no results are found, the operation throws an exception.</returns>
         public TValue this[TKey key]
@@ -623,14 +622,13 @@ namespace System.Collections.Immutable
 
 
 #nullable enable
-        /// <summary>Represents a sorted dictionary that mutates with little or no memory allocations and that can produce or build on immutable sorted dictionary instances very efficiently.
-        /// 
-        /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
         /// <typeparam name="TKey" />
         /// <typeparam name="TValue" />
+#pragma warning restore CS1711
         [DebuggerDisplay("Count = {Count}")]
         [DebuggerTypeProxy(typeof(ImmutableSortedDictionaryBuilderDebuggerProxy<,>))]
-        public sealed class Builder :
+        internal sealed class Builder :
           IDictionary<TKey, TValue>,
           ICollection<KeyValuePair<TKey, TValue>>,
           IEnumerable<KeyValuePair<TKey, TValue>>,
@@ -776,7 +774,9 @@ namespace System.Collections.Immutable
                 get
                 {
                     if (this._syncRoot == null)
+#pragma warning disable CS8625
                         Interlocked.CompareExchange<object>(ref this._syncRoot, new object(), (object)null);
+#pragma warning restore CS8625
                     return this._syncRoot;
                 }
             }
@@ -1017,13 +1017,12 @@ namespace System.Collections.Immutable
             public ImmutableSortedDictionary<TKey, TValue> ToImmutable() => this._immutable ?? (this._immutable = ImmutableSortedDictionary<TKey, TValue>.Wrap(this.Root, this._count, this._keyComparer, this._valueComparer));
         }
 
-        /// <summary>Enumerates the contents of a binary tree.
-        /// 
-        /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
         /// <typeparam name="TKey" />
         /// <typeparam name="TValue" />
+#pragma warning restore CS1711
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public struct Enumerator :
+        internal struct Enumerator :
           IEnumerator<KeyValuePair<TKey, TValue>>,
           IDisposable,
           IEnumerator,

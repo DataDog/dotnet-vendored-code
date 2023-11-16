@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.Ecma335.MetadataReaderExtensions
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections.Generic;
 using System.Reflection.Internal;
 
@@ -14,7 +19,7 @@ namespace System.Reflection.Metadata.Ecma335
     /// <summary>
     /// Provides extension methods for working with certain raw elements of the ECMA-335 metadata tables and heaps.
     /// </summary>
-    public static class MetadataReaderExtensions
+    internal static class MetadataReaderExtensions
   {
     /// <summary>Returns the number of rows in the specified table.</summary>
     /// <exception cref="T:System.ArgumentNullException"><paramref name="reader" /> is null.</exception>
@@ -462,7 +467,7 @@ namespace System.Reflection.Metadata.Ecma335
                 case TypeRefSignatureTreatment.ProjectedToValueType:
                   return SignatureTypeKind.ValueType;
                 default:
-                  throw ExceptionUtilities.UnexpectedValue(signatureTreatment);
+                  throw ExceptionUtilities.UnexpectedValue((object) signatureTreatment);
               }
             case HandleKind.TypeDefinition:
               return signatureTypeKind;

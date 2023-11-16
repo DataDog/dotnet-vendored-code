@@ -1,11 +1,18 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.ThrowHelper
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Runtime.CompilerServices;
 using System.Buffers;
+using System.Memory;
 
 namespace System
 {
@@ -24,12 +31,12 @@ namespace System
     internal static void ThrowArgumentException_InvalidTypeWithPointersNotSupported(Type type) => throw ThrowHelper.CreateArgumentException_InvalidTypeWithPointersNotSupported(type);
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateArgumentException_InvalidTypeWithPointersNotSupported(Type type) => (Exception) new ArgumentException(SR.Format(SR.Argument_InvalidTypeWithPointersNotSupported, (object) type));
+    private static Exception CreateArgumentException_InvalidTypeWithPointersNotSupported(Type type) => (Exception) new ArgumentException(SR.Format(System.Memory.SR.Argument_InvalidTypeWithPointersNotSupported, (object) type));
 
     internal static void ThrowArgumentException_DestinationTooShort() => throw ThrowHelper.CreateArgumentException_DestinationTooShort();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateArgumentException_DestinationTooShort() => (Exception) new ArgumentException(SR.Argument_DestinationTooShort);
+    private static Exception CreateArgumentException_DestinationTooShort() => (Exception) new ArgumentException(System.Memory.SR.Argument_DestinationTooShort);
 
     internal static void ThrowIndexOutOfRangeException() => throw ThrowHelper.CreateIndexOutOfRangeException();
 
@@ -49,12 +56,12 @@ namespace System
     internal static void ThrowArgumentOutOfRangeException_PrecisionTooLarge() => throw ThrowHelper.CreateArgumentOutOfRangeException_PrecisionTooLarge();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateArgumentOutOfRangeException_PrecisionTooLarge() => (Exception) new ArgumentOutOfRangeException("precision", SR.Format(SR.Argument_PrecisionTooLarge, (object) (byte) 99));
+    private static Exception CreateArgumentOutOfRangeException_PrecisionTooLarge() => (Exception) new ArgumentOutOfRangeException("precision", SR.Format(System.Memory.SR.Argument_PrecisionTooLarge, (object) (byte) 99));
 
     internal static void ThrowArgumentOutOfRangeException_SymbolDoesNotFit() => throw ThrowHelper.CreateArgumentOutOfRangeException_SymbolDoesNotFit();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateArgumentOutOfRangeException_SymbolDoesNotFit() => (Exception) new ArgumentOutOfRangeException("symbol", SR.Argument_BadFormatSpecifier);
+    private static Exception CreateArgumentOutOfRangeException_SymbolDoesNotFit() => (Exception) new ArgumentOutOfRangeException("symbol", System.Memory.SR.Argument_BadFormatSpecifier);
 
     internal static void ThrowInvalidOperationException() => throw ThrowHelper.CreateInvalidOperationException();
 
@@ -64,17 +71,17 @@ namespace System
     internal static void ThrowInvalidOperationException_OutstandingReferences() => throw ThrowHelper.CreateInvalidOperationException_OutstandingReferences();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateInvalidOperationException_OutstandingReferences() => (Exception) new InvalidOperationException(SR.OutstandingReferences);
+    private static Exception CreateInvalidOperationException_OutstandingReferences() => (Exception) new InvalidOperationException(System.Memory.SR.OutstandingReferences);
 
     internal static void ThrowInvalidOperationException_UnexpectedSegmentType() => throw ThrowHelper.CreateInvalidOperationException_UnexpectedSegmentType();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateInvalidOperationException_UnexpectedSegmentType() => (Exception) new InvalidOperationException(SR.UnexpectedSegmentType);
+    private static Exception CreateInvalidOperationException_UnexpectedSegmentType() => (Exception) new InvalidOperationException(System.Memory.SR.UnexpectedSegmentType);
 
     internal static void ThrowInvalidOperationException_EndPositionNotReached() => throw ThrowHelper.CreateInvalidOperationException_EndPositionNotReached();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateInvalidOperationException_EndPositionNotReached() => (Exception) new InvalidOperationException(SR.EndPositionNotReached);
+    private static Exception CreateInvalidOperationException_EndPositionNotReached() => (Exception) new InvalidOperationException(System.Memory.SR.EndPositionNotReached);
 
     internal static void ThrowArgumentOutOfRangeException_PositionOutOfRange() => throw ThrowHelper.CreateArgumentOutOfRangeException_PositionOutOfRange();
 
@@ -94,12 +101,12 @@ namespace System
     internal static void ThrowFormatException_BadFormatSpecifier() => throw ThrowHelper.CreateFormatException_BadFormatSpecifier();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateFormatException_BadFormatSpecifier() => (Exception) new FormatException(SR.Argument_BadFormatSpecifier);
+    private static Exception CreateFormatException_BadFormatSpecifier() => (Exception) new FormatException(System.Memory.SR.Argument_BadFormatSpecifier);
 
     internal static void ThrowArgumentException_OverlapAlignmentMismatch() => throw ThrowHelper.CreateArgumentException_OverlapAlignmentMismatch();
 
     [MethodImpl(MethodImplOptions.NoInlining)]
-    private static Exception CreateArgumentException_OverlapAlignmentMismatch() => (Exception) new ArgumentException(SR.Argument_OverlapAlignmentMismatch);
+    private static Exception CreateArgumentException_OverlapAlignmentMismatch() => (Exception) new ArgumentException(System.Memory.SR.Argument_OverlapAlignmentMismatch);
 
     internal static void ThrowNotSupportedException() => throw ThrowHelper.CreateThrowNotSupportedException();
 

@@ -1,11 +1,15 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.Ecma335.MetadataBuilder
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Collections.Immutable;
 using System.Reflection.Internal;
 
@@ -13,7 +17,7 @@ using System.Reflection.Internal;
 #nullable enable
 namespace System.Reflection.Metadata.Ecma335
 {
-    public sealed class MetadataBuilder
+    internal sealed class MetadataBuilder
   {
     private const byte MetadataFormatMajorVersion = 2;
     private const byte MetadataFormatMinorVersion = 0;
@@ -521,7 +525,7 @@ namespace System.Reflection.Metadata.Ecma335
       AssemblyFlags flags,
       AssemblyHashAlgorithm hashAlgorithm)
     {
-      if (version == null)
+      if ((object) version == null)
         Throw.ArgumentNull(nameof (version));
       if (this._assemblyRow.HasValue)
         Throw.InvalidOperation(SR.AssemblyAlreadyAdded);
@@ -545,7 +549,7 @@ namespace System.Reflection.Metadata.Ecma335
       AssemblyFlags flags,
       BlobHandle hashValue)
     {
-      if (version == null)
+      if ((object) version == null)
         Throw.ArgumentNull(nameof (version));
       this._assemblyRefTable.Add(new MetadataBuilder.AssemblyRefTableRow()
       {

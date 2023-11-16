@@ -1,19 +1,20 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableSortedSet`1
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 
 #nullable enable
@@ -25,7 +26,7 @@ namespace System.Collections.Immutable
     /// <typeparam name="T">The type of elements in the set.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
   [DebuggerTypeProxy(typeof (ImmutableEnumerableDebuggerProxy<>))]
-  public sealed class ImmutableSortedSet<T> : 
+  internal sealed class ImmutableSortedSet<T> : 
     IImmutableSet<T>,
     IReadOnlyCollection<T>,
     IEnumerable<T>,
@@ -616,13 +617,12 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Represents a sorted set that enables changes with little or no memory allocations, and efficiently manipulates or builds immutable sorted sets.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
     /// <typeparam name="T" />
+#pragma warning restore CS1711
     [DebuggerDisplay("Count = {Count}")]
     [DebuggerTypeProxy(typeof (ImmutableSortedSetBuilderDebuggerProxy<>))]
-    public sealed class Builder : 
+    internal sealed class Builder : 
       ISortKeyCollection<T>,
       IReadOnlyCollection<T>,
       IEnumerable<T>,
@@ -905,7 +905,9 @@ namespace System.Collections.Immutable
         get
         {
           if (this._syncRoot == null)
-            Interlocked.CompareExchange<object>(ref this._syncRoot, new object(), (object) null);
+#pragma warning disable CS8625
+              Interlocked.CompareExchange<object>(ref this._syncRoot, new object(), (object) null);
+#pragma warning restore CS8625
           return this._syncRoot;
         }
       }
@@ -930,12 +932,11 @@ namespace System.Collections.Immutable
 
 
     #nullable enable
-    /// <summary>Enumerates the contents of a binary tree.
-    /// 
-    /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
+#pragma warning disable CS1711
     /// <typeparam name="T" />
+#pragma warning restore CS1711
     [EditorBrowsable(EditorBrowsableState.Advanced)]
-    public struct Enumerator : 
+    internal struct Enumerator : 
       IEnumerator<T>,
       IDisposable,
       IEnumerator,

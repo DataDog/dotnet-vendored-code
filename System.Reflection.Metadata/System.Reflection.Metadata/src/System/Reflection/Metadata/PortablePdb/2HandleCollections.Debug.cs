@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.LocalScopeHandleCollection
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,7 +16,7 @@ using System.Collections.Generic;
 #nullable enable
 namespace System.Reflection.Metadata
 {
-    public readonly struct LocalScopeHandleCollection : 
+    internal readonly struct LocalScopeHandleCollection : 
     IReadOnlyCollection<LocalScopeHandle>,
     IEnumerable<LocalScopeHandle>,
     IEnumerable
@@ -48,7 +53,7 @@ namespace System.Reflection.Metadata
 
 
     #nullable enable
-    public struct Enumerator : IEnumerator<LocalScopeHandle>, IDisposable, IEnumerator
+    internal struct Enumerator : IEnumerator<LocalScopeHandle>, IDisposable, IEnumerator
     {
 
       #nullable disable
@@ -88,7 +93,7 @@ namespace System.Reflection.Metadata
       }
     }
 
-    public struct ChildrenEnumerator : IEnumerator<LocalScopeHandle>, IDisposable, IEnumerator
+    internal struct ChildrenEnumerator : IEnumerator<LocalScopeHandle>, IDisposable, IEnumerator
     {
 
       #nullable disable

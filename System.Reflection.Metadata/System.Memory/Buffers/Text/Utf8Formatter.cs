@@ -1,17 +1,24 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.Text.Utf8Formatter
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Buffers.Binary;
+using System.Memory;
 
 namespace System.Buffers.Text
 {
-    public static class Utf8Formatter
+    internal static class Utf8Formatter
   {
     private const byte TimeMarker = 84;
     private const byte UtcMarker = 90;
@@ -807,7 +814,7 @@ label_12:
       return Utf8Formatter.TryFormatUInt64((ulong) value, destination, out bytesWritten, format);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryFormat(
       sbyte value,
       Span<byte> destination,
@@ -817,7 +824,7 @@ label_12:
       return Utf8Formatter.TryFormatInt64((long) value, (ulong) byte.MaxValue, destination, out bytesWritten, format);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryFormat(
       ushort value,
       Span<byte> destination,
@@ -836,7 +843,7 @@ label_12:
       return Utf8Formatter.TryFormatInt64((long) value, (ulong) ushort.MaxValue, destination, out bytesWritten, format);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryFormat(
       uint value,
       Span<byte> destination,
@@ -855,7 +862,7 @@ label_12:
       return Utf8Formatter.TryFormatInt64((long) value, (ulong) uint.MaxValue, destination, out bytesWritten, format);
     }
 
-    [CLSCompliant(false)]
+    // [CLSCompliant(false)]
     public static bool TryFormat(
       ulong value,
       Span<byte> destination,

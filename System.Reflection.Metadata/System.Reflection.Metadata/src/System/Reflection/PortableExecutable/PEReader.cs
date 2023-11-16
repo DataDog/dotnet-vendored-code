@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.PortableExecutable.PEReader
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.IO;
 using System.IO.Compression;
 using System.Runtime.ExceptionServices;
@@ -11,6 +16,8 @@ using System.Threading;
 using System.Collections.Immutable;
 using System.Reflection.Internal;
 using System.Reflection.Metadata;
+#pragma warning disable CS0168
+#pragma warning disable CS8625
 
 
 #nullable enable
@@ -26,7 +33,7 @@ namespace System.Reflection.PortableExecutable
     /// The implementation is thread-safe, that is multiple threads can read data from the reader in parallel.
     /// Disposal of the reader is not thread-safe (see <see cref="M:System.Reflection.PortableExecutable.PEReader.Dispose" />).
     /// </remarks>
-    public sealed class PEReader : IDisposable
+    internal sealed class PEReader : IDisposable
     {
 
 #nullable disable

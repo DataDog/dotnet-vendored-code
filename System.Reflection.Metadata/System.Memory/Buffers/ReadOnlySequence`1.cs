@@ -1,19 +1,26 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.ReadOnlySequence`1
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Runtime.CompilerServices.Unsafe;
 using System.Runtime.InteropServices;
+using Unsafe = System.Runtime.CompilerServices.Unsafe.Unsafe;
+#pragma warning disable CS8625
 
 namespace System.Buffers
 {
     [DebuggerTypeProxy(typeof(ReadOnlySequenceDebugView<>))]
     [DebuggerDisplay("{ToString(),raw}")]
-    public readonly struct ReadOnlySequence<T>
+    internal readonly struct ReadOnlySequence<T>
     {
         private readonly SequencePosition _sequenceStart;
         private readonly SequencePosition _sequenceEnd;
@@ -64,24 +71,24 @@ namespace System.Buffers
             }
             ThrowHelper.ThrowArgumentValidationException<T>(startSegment, startIndex, endSegment);
         label_4:
-            this._sequenceStart = new SequencePosition(startSegment, ReadOnlySequence.SegmentToSequenceStart(startIndex));
-            this._sequenceEnd = new SequencePosition(endSegment, ReadOnlySequence.SegmentToSequenceEnd(endIndex));
+            this._sequenceStart = new SequencePosition((object)startSegment, ReadOnlySequence.SegmentToSequenceStart(startIndex));
+            this._sequenceEnd = new SequencePosition((object)endSegment, ReadOnlySequence.SegmentToSequenceEnd(endIndex));
         }
 
         public ReadOnlySequence(T[] array)
         {
             if (array == null)
                 ThrowHelper.ThrowArgumentNullException(ExceptionArgument.array);
-            this._sequenceStart = new SequencePosition(array, ReadOnlySequence.ArrayToSequenceStart(0));
-            this._sequenceEnd = new SequencePosition(array, ReadOnlySequence.ArrayToSequenceEnd(array.Length));
+            this._sequenceStart = new SequencePosition((object)array, ReadOnlySequence.ArrayToSequenceStart(0));
+            this._sequenceEnd = new SequencePosition((object)array, ReadOnlySequence.ArrayToSequenceEnd(array.Length));
         }
 
         public ReadOnlySequence(T[] array, int start, int length)
         {
             if (array == null || (uint)start > (uint)array.Length || (uint)length > (uint)(array.Length - start))
                 ThrowHelper.ThrowArgumentValidationException((Array)array, start);
-            this._sequenceStart = new SequencePosition(array, ReadOnlySequence.ArrayToSequenceStart(start));
-            this._sequenceEnd = new SequencePosition(array, ReadOnlySequence.ArrayToSequenceEnd(start + length));
+            this._sequenceStart = new SequencePosition((object)array, ReadOnlySequence.ArrayToSequenceStart(start));
+            this._sequenceEnd = new SequencePosition((object)array, ReadOnlySequence.ArrayToSequenceEnd(start + length));
         }
 
         public ReadOnlySequence(ReadOnlyMemory<T> memory)
@@ -91,8 +98,8 @@ namespace System.Buffers
             int length;
             if (MemoryMarshal.TryGetMemoryManager<T, MemoryManager<T>>(memory, out manager, out start1, out length))
             {
-                this._sequenceStart = new SequencePosition(manager, ReadOnlySequence.MemoryManagerToSequenceStart(start1));
-                this._sequenceEnd = new SequencePosition(manager, ReadOnlySequence.MemoryManagerToSequenceEnd(start1 + length));
+                this._sequenceStart = new SequencePosition((object)manager, ReadOnlySequence.MemoryManagerToSequenceStart(start1));
+                this._sequenceEnd = new SequencePosition((object)manager, ReadOnlySequence.MemoryManagerToSequenceEnd(start1 + length));
             }
             else
             {
@@ -101,8 +108,8 @@ namespace System.Buffers
                 {
                     T[] array = segment.Array;
                     int offset = segment.Offset;
-                    this._sequenceStart = new SequencePosition(array, ReadOnlySequence.ArrayToSequenceStart(offset));
-                    this._sequenceEnd = new SequencePosition(array, ReadOnlySequence.ArrayToSequenceEnd(offset + segment.Count));
+                    this._sequenceStart = new SequencePosition((object)array, ReadOnlySequence.ArrayToSequenceStart(offset));
+                    this._sequenceEnd = new SequencePosition((object)array, ReadOnlySequence.ArrayToSequenceEnd(offset + segment.Count));
                 }
                 else if (typeof(T) == typeof(char))
                 {
@@ -110,8 +117,8 @@ namespace System.Buffers
                     int start2;
                     if (!MemoryMarshal.TryGetString((ReadOnlyMemory<char>)(ValueType)memory, out text, out start2, out length))
                         ThrowHelper.ThrowInvalidOperationException();
-                    this._sequenceStart = new SequencePosition(text, ReadOnlySequence.StringToSequenceStart(start2));
-                    this._sequenceEnd = new SequencePosition(text, ReadOnlySequence.StringToSequenceEnd(start2 + length));
+                    this._sequenceStart = new SequencePosition((object)text, ReadOnlySequence.StringToSequenceStart(start2));
+                    this._sequenceEnd = new SequencePosition((object)text, ReadOnlySequence.StringToSequenceEnd(start2 + length));
                 }
                 else
                 {
@@ -341,7 +348,7 @@ namespace System.Buffers
                     ReadOnlySequenceSegment<T> next1 = onlySequenceSegment.Next;
                     if (next1 == null)
                         ThrowHelper.ThrowInvalidOperationException_EndPositionNotReached();
-                    next = new SequencePosition(next1, 0);
+                    next = new SequencePosition((object)next1, 0);
                     memory = onlySequenceSegment.Memory.Slice(index1);
                 }
                 else
@@ -430,7 +437,7 @@ namespace System.Buffers
             if (currentSegment == null || (long)endIndex < offset)
                 ThrowHelper.ThrowArgumentOutOfRangeException(argument);
             label_6:
-            return new SequencePosition(currentSegment, (int)offset);
+            return new SequencePosition((object)currentSegment, (int)offset);
         }
 
         private void BoundsCheck(in SequencePosition position)
@@ -577,7 +584,7 @@ namespace System.Buffers
 
         private static bool InRange(ulong value, ulong start, ulong end) => value - start <= end - start;
 
-        public struct Enumerator
+        internal struct Enumerator
         {
             private readonly ReadOnlySequence<T> _sequence;
             private SequencePosition _next;

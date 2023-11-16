@@ -1,9 +1,28 @@
-﻿using System;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#nullable enable
+using System;
 using System.Resources;
 
 namespace FxResources.System.Reflection.Metadata
 {
-    public static class SR { }
+    internal static class SR { }
 }
 namespace System
 {
@@ -386,5 +405,7 @@ namespace System
 
         public static string Arg_KeyNotFoundWithKey => GetResourceString("KeyNotFoundWithKey",
             "The key has not found in the dictionary. Key: {0}");
+
+        public static string Argument_GWithPrecisionNotSupported { get; }
     }
 }

@@ -1,14 +1,18 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Collections.Immutable.ImmutableInterlocked
 // Assembly: System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 5F9FF90F-0D16-4469-A104-76829D3705E2
 
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices.Unsafe;
-
 
 #nullable enable
 namespace System.Collections.Immutable
@@ -16,7 +20,7 @@ namespace System.Collections.Immutable
     /// <summary>Contains interlocked exchange mechanisms for immutable collections.
     /// 
     /// NuGet package: System.Collections.Immutable (about immutable collections and how to install)</summary>
-    public static class ImmutableInterlocked
+    internal static class ImmutableInterlocked
   {
     /// <summary>Mutates a value in-place with optimistic locking transaction semantics             via a specified transformation function.             The transformation is retried as many times as necessary to win the optimistic locking race.</summary>
     /// <param name="location">The variable or field to be changed, which may be accessed by multiple threads.</param>
@@ -223,7 +227,7 @@ namespace System.Collections.Immutable
     /// <param name="value">The value to add to the dictionary the key is not found.</param>
     /// <typeparam name="TKey">The type of the keys contained in the collection.</typeparam>
     /// <typeparam name="TValue">The type of the values contained in the collection.</typeparam>
-    /// <returns>The value at the specified key or <paramref name="valueFactory" /> if the key was not present.</returns>
+    /// <returns>The value at the specified key or valueFactory if the key was not present.</returns>
     public static TValue GetOrAdd<TKey, TValue>(
       ref ImmutableDictionary<TKey, TValue> location,
       TKey key,

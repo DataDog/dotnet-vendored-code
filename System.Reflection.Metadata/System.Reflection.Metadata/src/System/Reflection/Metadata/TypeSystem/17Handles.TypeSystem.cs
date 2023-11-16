@@ -1,15 +1,19 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.GenericParameterConstraintHandle
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
 
 #nullable enable
-using System;
-
 namespace System.Reflection.Metadata
 {
-  public readonly struct GenericParameterConstraintHandle : 
+  internal readonly struct GenericParameterConstraintHandle : 
     IEquatable<GenericParameterConstraintHandle>
   {
     private const uint tokenType = 738197504;

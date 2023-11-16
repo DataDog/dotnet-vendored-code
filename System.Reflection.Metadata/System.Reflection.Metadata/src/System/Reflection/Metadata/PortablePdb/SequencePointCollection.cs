@@ -1,9 +1,14 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.SequencePointCollection
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Internal;
@@ -13,7 +18,7 @@ using System.Reflection.Metadata.Ecma335;
 #nullable enable
 namespace System.Reflection.Metadata
 {
-    public readonly struct SequencePointCollection : IEnumerable<SequencePoint>, IEnumerable
+    internal readonly struct SequencePointCollection : IEnumerable<SequencePoint>, IEnumerable
   {
     private readonly MemoryBlock _block;
     private readonly DocumentHandle _document;
@@ -34,7 +39,7 @@ namespace System.Reflection.Metadata
 
 
     #nullable enable
-    public struct Enumerator : IEnumerator<SequencePoint>, IDisposable, IEnumerator
+    internal struct Enumerator : IEnumerator<SequencePoint>, IDisposable, IEnumerator
     {
       private BlobReader _reader;
       private SequencePoint _current;

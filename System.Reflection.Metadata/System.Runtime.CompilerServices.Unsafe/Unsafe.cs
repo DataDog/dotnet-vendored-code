@@ -1,6 +1,4 @@
-﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 using InlineIL;
 using static InlineIL.IL.Emit;
@@ -500,7 +498,7 @@ namespace System.Runtime.Versioning
 
 //namespace System.Runtime.CompilerServices.Unsafe
 //{
-//      public static partial class Unsafe
+//      internal static partial class Unsafe
 //    {
 //        public static ref T AddByteOffset<T>(ref T source, System.IntPtr byteOffset) { throw null; }
 //        [System.CLSCompliantAttribute(false)]

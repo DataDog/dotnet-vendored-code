@@ -1,13 +1,20 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Buffers.StandardFormat
 // Assembly: System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51
 // MVID: 805945F3-27B0-47AD-B8F6-389D9D8F82C3
 
-using System;
+using System.Memory;
 
 namespace System.Buffers
 {
-  public readonly struct StandardFormat : IEquatable<StandardFormat>
+  internal readonly struct StandardFormat : IEquatable<StandardFormat>
   {
     public const byte NoPrecision = 255;
     public const byte MaxPrecision = 99;
@@ -51,10 +58,10 @@ namespace System.Buffers
         {
           uint num2 = (uint) format[index] - 48U;
           if (num2 > 9U)
-            throw new FormatException(SR.Format(SR.Argument_CannotParsePrecision, (object) (byte) 99));
+            throw new FormatException(SR.Format(System.Memory.SR.Argument_CannotParsePrecision, (object) (byte) 99));
           num1 = num1 * 10U + num2;
           if (num1 > 99U)
-            throw new FormatException(SR.Format(SR.Argument_PrecisionTooLarge, (object) (byte) 99));
+            throw new FormatException(SR.Format(System.Memory.SR.Argument_PrecisionTooLarge, (object) (byte) 99));
         }
         precision = (byte) num1;
       }

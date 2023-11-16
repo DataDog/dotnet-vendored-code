@@ -1,7 +1,15 @@
-﻿using System;
+
+
+
+
+
+
+#nullable enable
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
+#pragma warning disable CS8619
+#pragma warning disable CS8625
 
 namespace System.Buffers
 {
@@ -553,9 +561,9 @@ namespace System.Buffers
         /// <remarks>This avoids using anything that might in turn recursively use the ArrayPool.</remarks>
         private static bool TryGetInt32EnvironmentVariable(string variable, out int result)
         {
-            //todo fix
             // Avoid globalization stack, as it might in turn be using ArrayPool.
-
+            // todo: fix
+            // if (Environment.GetEnvironmentVariableCore_NoArrayPool(variable) is string envVar &&
             if (Environment.GetEnvironmentVariable(variable) is string envVar &&
                 envVar.Length is > 0 and <= 32) // arbitrary limit that allows for some spaces around the maximum length of a non-negative Int32 (10 digits)
             {

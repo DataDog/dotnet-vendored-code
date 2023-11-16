@@ -1,13 +1,19 @@
-﻿
+
+
+
+
+
+
+
 // Type: System.Reflection.Metadata.MetadataReaderProvider
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
 
-using System;
 using System.IO;
 using System.Threading;
 using System.Collections.Immutable;
 using System.Reflection.Internal;
+#pragma warning disable CS8625
 
 
 #nullable enable
@@ -22,7 +28,7 @@ namespace System.Reflection.Metadata
     /// - Edit and Continue metadata delta (<see cref="M:System.Reflection.Metadata.MetadataReaderProvider.FromMetadataImage(System.Byte*,System.Int32)" />)
     /// - Portable PDB metadata (<see cref="M:System.Reflection.Metadata.MetadataReaderProvider.FromPortablePdbImage(System.Byte*,System.Int32)" />)
     /// </remarks>
-    public sealed class MetadataReaderProvider : IDisposable
+    internal sealed class MetadataReaderProvider : IDisposable
   {
 
     #nullable disable

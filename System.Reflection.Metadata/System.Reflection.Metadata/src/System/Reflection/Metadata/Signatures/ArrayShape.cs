@@ -1,4 +1,11 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Reflection.Metadata.ArrayShape
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
@@ -8,7 +15,7 @@ using System.Collections.Immutable;
 namespace System.Reflection.Metadata
 {
   /// <summary>Represents the shape of an array type.</summary>
-  public readonly struct ArrayShape
+  internal readonly struct ArrayShape
   {
     /// <summary>Gets the number of dimensions in the array.</summary>
     public int Rank { get; }

@@ -1,4 +1,11 @@
-﻿
+
+
+
+
+
+
+#nullable enable
+
 // Type: System.Reflection.AssemblyHashAlgorithm
 // Assembly: System.Reflection.Metadata, Version=7.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
 // MVID: 2EB35F4B-CF50-496F-AFB8-CC6F6F79CB72
@@ -8,7 +15,7 @@ namespace System.Reflection
   /// <summary>
   /// Specifies all the hash algorithms used for hashing assembly files and for generating the strong name.
   /// </summary>
-  public enum AssemblyHashAlgorithm
+  internal enum AssemblyHashAlgorithm
   {
     /// <summary>
     /// A mask indicating that there is no hash algorithm. If you specify None for a multi-module assembly, the common language runtime defaults to the SHA1 algorithm, since multi-module assemblies need to generate a hash.

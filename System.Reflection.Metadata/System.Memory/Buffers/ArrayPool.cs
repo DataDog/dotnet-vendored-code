@@ -1,4 +1,11 @@
-﻿namespace System.Buffers
+
+
+
+
+
+
+#nullable enable
+namespace System.Buffers
 {
     /// <summary>
     /// Provides a resource pool that enables reusing instances of arrays.
@@ -13,7 +20,7 @@
     /// This class is thread-safe.  All members may be used by multiple threads concurrently.
     /// </para>
     /// </remarks>
-    public abstract class ArrayPool<T>
+    internal abstract class ArrayPool<T>
     {
         // Store the shared ArrayPool in a field of its derived sealed type so the Jit can "see" the exact type
         // when the Shared property is inlined which will allow it to devirtualize calls made on it.
